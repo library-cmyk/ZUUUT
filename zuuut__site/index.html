@@ -1,26 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Fibre Optique Maroc - Zuuut Store | Installation Gratuite</title>
-    <meta name="description" content="Découvrez les meilleures offres Fibre Optique Maroc (Orange, Inwi, IAM) et produits High-Tech sur Zuuut Store. Installation Gratuite et paiement à la livraison.">
+    <meta name="description" content="Offres Fibre Optique Maroc et Produits High-Tech.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#ff5e00">
     <meta property="og:image" content="https://i.imgur.com/Kz8ygFq.png">
     
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Zuuut Store",
-      "url": "https://zuuut.store/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://zuuut.store/#search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "@context": "https://schema.org", "@type": "WebSite", "name": "Zuuut Store", "url": "https://zuuut.store/"
     }
     </script>
     
@@ -67,13 +59,17 @@
             box-shadow: inset 0 0 10px rgba(255, 94, 0, 0.1); border: 1px solid rgba(255, 94, 0, 0.3);
         }
         
-        #lang-menu{background:var(--glass-bg); color:var(--text); border:var(--glass-border); position:absolute; top:70px; right:20px; padding:10px; border-radius:15px; display:none; box-shadow:0 10px 30px rgba(0,0,0,0.2); width:160px; z-index:2001;}
-        #lang-menu div{padding:10px; cursor:pointer; border-radius:8px; font-weight:600;} 
+        /* --- LANG MENU AVEC IMAGES --- */
+        #lang-menu{background:var(--glass-bg); color:var(--text); border:var(--glass-border); position:absolute; top:70px; right:20px; padding:10px; border-radius:15px; display:none; box-shadow:0 10px 30px rgba(0,0,0,0.2); width:180px; z-index:2001;}
+        #lang-menu div{padding:10px; cursor:pointer; border-radius:8px; font-weight:600; display:flex; align-items:center; gap:10px;} 
         #lang-menu div:hover{background:rgba(255,94,0,0.1);color:var(--primary)}
+        
+        .flag-icon { width: 24px; height: auto; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
         .mobile-controls { display: none; align-items: center; gap: 20px; } 
         .menu-toggle, .mobile-theme-btn, .lang-mobile-btn { font-size: 1.5rem; color: var(--text); cursor: pointer; background:none; border:none;}
 
-        /* --- HERO --- */
+        /* --- HERO & FIX DISTORTION --- */
         .hero-wrapper { 
             position: relative; border-radius: 40px; padding: 4px; 
             background: rgba(0,0,0,0.05); margin: 30px 0; z-index: 1; overflow: hidden; 
@@ -94,13 +90,27 @@
         .mega-title { font-family: 'Share Tech Mono', monospace; font-size: 5rem; font-weight: 900; line-height: 1; background: linear-gradient(45deg, var(--text) 30%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 10px 0; }
         .sub-title { font-size:1.4rem; font-weight:700; opacity:0.8; letter-spacing:5px; margin-bottom:40px; text-transform:uppercase; font-family:'Poppins',sans-serif; }
         
-        .features-list { display: flex; flex-direction: column; gap: 8px; max-width: 400px; margin: 0 auto 20px auto; }
-        .feat-item { position: relative; width: 100%; padding: 3px; border-radius: 12px; overflow: hidden; background: transparent; animation: floatLoop 3s ease-in-out infinite; }
-        @keyframes floatLoop { 0% { transform: translateY(0); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0); } }
+        .features-list { display: flex; flex-direction: column; gap: 12px; max-width: 450px; margin: 0 auto 20px auto; }
+        .feat-item { position: relative; width: 100%; padding: 3px; border-radius: 15px; overflow: hidden; background: transparent; transform: translateZ(0); }
         .feat-item::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(#d90429, #008000, #d90429, #008000, #d90429); animation: rotate 4s linear infinite; z-index: 0; }
-        .feat-inner { position: relative; z-index: 1; background: var(--glass-bg); width: 100%; height: 100%; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 15px; padding: 12px 20px; font-family: 'Share Tech Mono', monospace; text-transform: uppercase; letter-spacing: 1px; color: var(--text); font-weight: 800; font-size: 1.1rem; }
+        
+        .feat-inner { 
+            position: relative; z-index: 1; background: var(--glass-bg); 
+            width: 100%; min-height: 60px; /* FIX HAUTEUR MIN */
+            border-radius: 12px; display: flex; align-items: center; justify-content: flex-start; /* FIX ALIGNEMENT */
+            gap: 20px; padding: 12px 25px; 
+            font-family: 'Share Tech Mono', monospace; text-transform: uppercase; 
+            letter-spacing: 1px; color: var(--text); font-weight: 800; font-size: 1.1rem; 
+        }
+        
+        /* FIX ICON DISTORTION */
+        .feat-inner i { 
+            color: var(--primary); font-size: 1.6rem; 
+            flex-shrink: 0; /* INTERDIR LE RETRECISSEMENT */
+            width: 30px; text-align: center;
+        }
+        
         body.dark-mode .feat-inner { background: #1a1a1a; }
-        .feat-inner i { color: var(--primary); font-size: 1.3rem; }
 
         .price-hero-wrapper { position: relative; display: inline-block; padding: 2px; border-radius: 18px; margin: 10px 0; overflow: hidden; }
         .price-hero-wrapper::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #d90429, #008000, #d90429, #008000); background-size: 200% 100%; animation: borderRun 3s linear infinite; }
@@ -146,7 +156,6 @@
         .detail-container{background:var(--glass-bg);backdrop-filter:blur(30px);padding:40px;border-radius:40px;margin-top:20px;border:1px solid var(--primary);text-align:center;box-shadow:var(--glass-shadow)}
         .detail-img{width:100%;height:auto;max-height:500px;object-fit:cover;margin:30px 0;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.1)}
         
-        /* --- DETAILS TEXTE & TABLEAUX (Final Fix) --- */
         .detail-desc { 
             font-size: 1.05rem; opacity: 0.9; margin: 20px auto; 
             max-width: 900px; line-height: 1.8; text-align: left; 
@@ -154,32 +163,9 @@
         }
         .detail-desc img { max-width: 100%; height: auto !important; border-radius: 10px; display: block; margin: 15px auto; object-fit: contain; }
         
-        /* Tableaux */
-        .detail-desc table { 
-            width: 100% !important; 
-            border-collapse: separate; 
-            border-spacing: 0; 
-            margin: 25px 0; 
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px; 
-            overflow: hidden; 
-            border: 1px solid rgba(128,128,128,0.1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-        }
-        .detail-desc th, .detail-desc td { 
-            padding: 15px; 
-            text-align: left; 
-            border-bottom: 1px solid rgba(128,128,128,0.1); 
-            vertical-align: middle;
-        }
-        .detail-desc th { 
-            background: rgba(255, 94, 0, 0.08); 
-            color: var(--primary); 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            font-size: 0.85rem; 
-            letter-spacing: 1px; 
-        }
+        .detail-desc table { width: 100% !important; border-collapse: separate; border-spacing: 0; margin: 25px 0; background: rgba(255, 255, 255, 0.05); border-radius: 15px; overflow: hidden; border: 1px solid rgba(128,128,128,0.1); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .detail-desc th, .detail-desc td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.1); vertical-align: middle; }
+        .detail-desc th { background: rgba(255, 94, 0, 0.08); color: var(--primary); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
         .detail-desc tr:last-child td { border-bottom: none; }
 
         .in-article-ad { margin: 30px 0; border: 1px dashed rgba(128,128,128,0.3); padding: 10px; border-radius: 10px; background: rgba(0,0,0,0.02); text-align: center; }
@@ -245,16 +231,13 @@
             #detail-price { font-size: 2.2rem !important; }
             
             /* --- MOBILE TABLE FIX (RETOUR A LA LIGNE) --- */
-            .detail-desc table {
-                font-size: 0.85rem; 
-                width: 100% !important;
-                display: table;
-            }
-            .detail-desc th, .detail-desc td {
-                padding: 10px 5px;
-                white-space: normal !important; /* ALLOW WRAP */
-                word-break: break-word; 
-            }
+            .detail-desc table { font-size: 0.85rem; width: 100% !important; display: table; }
+            .detail-desc th, .detail-desc td { padding: 10px 5px; white-space: normal !important; word-break: break-word; }
+            
+            /* FIX SPACIOUS HERO MOBILE */
+            .feat-inner { justify-content: flex-start; }
+            .feat-inner span { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+            .feat-inner small { font-size: 0.8rem; opacity: 0.8; margin-left: auto; }
         }
     </style>
 </head>
@@ -324,11 +307,11 @@
                 </div>
                 
                 <div id="lang-menu">
-                    <div onclick="changeLang('fr')">🇫🇷 Français</div>
-                    <div onclick="changeLang('ar')">🇲🇦 العربية</div>
-                    <div onclick="changeLang('dr_la')">💬 Darija (Lat)</div>
-                    <div onclick="changeLang('dr_ar')">🇲🇦 الدارجة</div>
-                    <div onclick="changeLang('en')">🇺🇸 English</div>
+                    <div onclick="changeLang('fr')"><img src="https://flagcdn.com/w40/fr.png" class="flag-icon"> Français</div>
+                    <div onclick="changeLang('ar')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> العربية</div>
+                    <div onclick="changeLang('dr_la')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> Darija (Lat)</div>
+                    <div onclick="changeLang('dr_ar')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> الدارجة</div>
+                    <div onclick="changeLang('en')"><img src="https://flagcdn.com/w40/us.png" class="flag-icon"> English</div>
                 </div>
             </div>
         </div>
@@ -345,11 +328,11 @@
                         <div id="hero-unit" class="sub-title" data-i18n="hero_sub">MEGA / SECONDE</div>
                         
                         <div class="features-list">
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-gamepad"></i> <span id="hero-feat1">Gaming <small>0ms</small></span></div></div>
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-film"></i> <span id="hero-feat2">8K UHD <small>Zéro Lag</small></span></div></div>
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-bolt"></i> <span id="hero-feat3">Speed <small>Max</small></span></div></div>
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-wifi"></i> <span id="hero-feat4">Wifi 6 <small>Pro</small></span></div></div>
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-check-circle"></i> <span id="hero-feat5">Install <small>Gratuite</small></span></div></div>
+                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-gamepad"></i> <span><span id="hero-feat1-txt">Gaming</span> <small id="hero-feat1-sub">0ms</small></span></div></div>
+                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-film"></i> <span><span id="hero-feat2-txt">8K UHD</span> <small id="hero-feat2-sub">Zéro Lag</small></span></div></div>
+                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-bolt"></i> <span><span id="hero-feat3-txt">Speed</span> <small id="hero-feat3-sub">Max</small></span></div></div>
+                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-wifi"></i> <span><span id="hero-feat4-txt">Wifi 6</span> <small id="hero-feat4-sub">Pro</small></span></div></div>
+                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-check-circle"></i> <span><span id="hero-feat5-txt">Install</span> <small id="hero-feat5-sub">Gratuite</small></span></div></div>
                         </div>
                         
                         <div class="price-hero-wrapper">
@@ -585,14 +568,19 @@
                         const el = document.getElementById(htmlID); 
                         if (el && data[dbID]) { 
                             if(htmlID.startsWith('hero-feat')) {
-                                const icon = el.querySelector('i');
-                                const small = el.querySelector('small');
-                                if(icon) {
-                                    el.innerHTML = ''; el.appendChild(icon); el.append(" " + data[dbID].text.split(' ')[0] + " "); 
-                                    if(small) { small.innerText = data[dbID].text.split(' ').slice(1).join(' '); el.appendChild(small); } else { el.append(data[dbID].text.split(' ').slice(1).join(' ')); }
-                                } else { el.innerText = data[dbID].text; }
-                            } else { el.innerText = data[dbID].text; }
-                            el.style.display = data[dbID].active ? '' : 'none'; 
+                                // GESTION AVANCEE DU HERO (ICONE + TEXTE + SOUS-TITRE)
+                                const iconClass = el.querySelector('i').className;
+                                const parts = data[dbID].text.split(' ');
+                                const mainTxt = parts[0] + (parts[1] && parts[1].length < 4 ? ' '+parts[1] : '');
+                                const subTxt = parts.slice(mainTxt.split(' ').length).join(' ');
+                                
+                                // UPDATE HTML
+                                document.getElementById(htmlID+'-txt').innerText = mainTxt;
+                                document.getElementById(htmlID+'-sub').innerText = subTxt;
+                            } else { 
+                                el.innerText = data[dbID].text; 
+                            }
+                            // el.style.display = data[dbID].active ? '' : 'none'; 
                         } 
                     }; 
                     sync('hero-tagline', 'h_tagline'); sync('hero-number', 'h_number'); sync('hero-unit', 'h_unit'); sync('hero-price', 'h_price'); sync('hero-btn', 'h_btn'); 
@@ -631,6 +619,7 @@
 
         // --- HELPER: CLEAN TEXT (NO CODE) ---
         function getCleanPreview(html) {
+            if(!html) return "";
             let temp = html.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
                            .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
             temp = temp.replace(/<[^>]+>/g, '');
@@ -647,6 +636,20 @@
             return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
         }
 
+        // --- SYSTEME DE TRADUCTION DB (SMART) ---
+        function getTranslatedContent(offer, field) {
+            // Regarde si on est en Arabe/Darija et si le champ _ar existe
+            if ((currentLang === 'ar' || currentLang === 'dr_ar') && offer[field + '_ar']) {
+                return offer[field + '_ar'];
+            }
+            // Regarde si on est en Anglais et si le champ _en existe
+            if (currentLang === 'en' && offer[field + '_en']) {
+                return offer[field + '_en'];
+            }
+            // Sinon, retourne le français par défaut
+            return offer[field];
+        }
+
         function renderOffers(f) {
             const c = document.getElementById('offers-grid'); if(!c) return; c.innerHTML = ''; 
             const l = offersData.filter(o => o.active && (f === 'all' || o.type === f));
@@ -656,16 +659,20 @@
                 const e = document.createElement('div'); e.className = 'card-wrapper'; e.onclick = () => openDetail(o.id);
                 const myColor = colors[index % colors.length]; e.style.setProperty('--card-color', myColor);
                 
-                let cleanDesc = getCleanPreview(o.desc);
+                // TRADUCTION CONTENU
+                let displayTitle = getTranslatedContent(o, 'title');
+                let displayDescRaw = getTranslatedContent(o, 'desc');
+                let cleanDesc = getCleanPreview(displayDescRaw);
+                
                 const btnText = translations[currentLang] ? translations[currentLang]['view_offer'] : "VOIR L'OFFRE";
                 const adLabel = translations[currentLang] ? translations[currentLang]['ad_label'] : "Publicité";
 
                 e.innerHTML = `
                     <div class="card-content">
                         ${o.badge ? `<span style="position:absolute;top:20px;right:20px;background:${myColor};color:white;padding:5px 10px;border-radius:20px;font-weight:bold;z-index:5;">${o.badge}</span>` : ''}
-                        <img src="${o.img}" onerror="this.src='https://via.placeholder.com/300'" alt="${o.title}" loading="lazy">
+                        <img src="${o.img}" onerror="this.src='https://via.placeholder.com/300'" alt="${displayTitle}" loading="lazy">
                         <div style="padding:10px; display:flex; flex-direction:column; flex-grow:1;">
-                            <h3>${o.title}</h3>
+                            <h3>${displayTitle}</h3>
                             <p class="desc-preview">${cleanDesc}</p>
                             <div class="card-actions">
                                 <div class="price-inner" style="color:${myColor}; border:2px solid ${myColor};">${o.price} DH</div>
@@ -696,16 +703,21 @@
             }
 
             document.title = offer.title + " | Zuuut Store";
+            
+            // TRADUCTION DETAIL
+            let displayTitle = getTranslatedContent(offer, 'title');
+            let displayDesc = getTranslatedContent(offer, 'desc');
+
             const metaDesc = document.querySelector('meta[name="description"]');
-            let cleanMeta = getCleanPreview(offer.desc);
+            let cleanMeta = getCleanPreview(displayDesc);
             if (metaDesc) metaDesc.setAttribute("content", cleanMeta);
 
             db.runTransaction((t) => { const ref=db.collection('offers').doc(offer.id); return t.get(ref).then((d) => { if (!d.exists) return; t.update(ref, { views: (d.data().views || 0) + 1 }); }); }).catch(e=>{});
 
-            document.getElementById('detail-title').innerText=translateContent(offer.title, currentLang); 
+            document.getElementById('detail-title').innerText=displayTitle; 
             document.getElementById('detail-price').innerText=offer.price+' DH'; 
             document.getElementById('detail-img').src=offer.img; 
-            document.getElementById('detail-desc').innerHTML=translateContent(offer.desc||'', currentLang); 
+            document.getElementById('detail-desc').innerHTML=displayDesc; 
             
             renderReviews(offer.id);
 
@@ -745,7 +757,7 @@
             currentLang = l; document.getElementById('lang-menu').style.display='none'; 
             document.body.className = ''; 
             if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
-            if(l==='ar'||l==='dr_ar') document.body.classList.add('rtl'); // FIX POUR DARIJA LATIN
+            if(l==='ar'||l==='dr_ar') document.body.classList.add('rtl'); // FIX: Darija (Lat) reste LTR
             
             document.querySelectorAll('[data-i18n]').forEach(el=>{ 
                 const k=el.getAttribute('data-i18n'); 
