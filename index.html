@@ -59,17 +59,16 @@
             box-shadow: inset 0 0 10px rgba(255, 94, 0, 0.1); border: 1px solid rgba(255, 94, 0, 0.3);
         }
         
-        /* --- LANG MENU AVEC IMAGES --- */
+        /* --- LANG MENU --- */
         #lang-menu{background:var(--glass-bg); color:var(--text); border:var(--glass-border); position:absolute; top:70px; right:20px; padding:10px; border-radius:15px; display:none; box-shadow:0 10px 30px rgba(0,0,0,0.2); width:180px; z-index:2001;}
         #lang-menu div{padding:10px; cursor:pointer; border-radius:8px; font-weight:600; display:flex; align-items:center; gap:10px;} 
         #lang-menu div:hover{background:rgba(255,94,0,0.1);color:var(--primary)}
-        
         .flag-icon { width: 24px; height: auto; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
         .mobile-controls { display: none; align-items: center; gap: 20px; } 
         .menu-toggle, .mobile-theme-btn, .lang-mobile-btn { font-size: 1.5rem; color: var(--text); cursor: pointer; background:none; border:none;}
 
-        /* --- HERO & FIX DISTORTION --- */
+        /* --- HERO & FLUID GRID SYSTEM (New) --- */
         .hero-wrapper { 
             position: relative; border-radius: 40px; padding: 4px; 
             background: rgba(0,0,0,0.05); margin: 30px 0; z-index: 1; overflow: hidden; 
@@ -87,27 +86,49 @@
         body.dark-mode .hero-fibre { background: rgba(18, 18, 18, 0.96); color: #fff; }
         
         .badge-maroc { background: linear-gradient(90deg, #d90429, #008000); color: #fff; padding: 8px 25px; border-radius: 50px; display: inline-block; font-weight: 800; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 2px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
-        .mega-title { font-family: 'Share Tech Mono', monospace; font-size: 5rem; font-weight: 900; line-height: 1; background: linear-gradient(45deg, var(--text) 30%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 10px 0; }
-        .sub-title { font-size:1.4rem; font-weight:700; opacity:0.8; letter-spacing:5px; margin-bottom:40px; text-transform:uppercase; font-family:'Poppins',sans-serif; }
+        .mega-title { 
+            font-family: 'Share Tech Mono', monospace; 
+            font-size: clamp(3rem, 10vw, 5rem); /* FLUID FONT */
+            font-weight: 900; line-height: 1; 
+            background: linear-gradient(45deg, var(--text) 30%, var(--primary) 100%); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            margin: 10px 0; 
+        }
+        .sub-title { font-size: clamp(1rem, 3vw, 1.4rem); font-weight:700; opacity:0.8; letter-spacing:5px; margin-bottom:40px; text-transform:uppercase; font-family:'Poppins',sans-serif; }
         
-        .features-list { display: flex; flex-direction: column; gap: 12px; max-width: 450px; margin: 0 auto 20px auto; }
+        /* LISTE FLUIDE SANS ECRASEMENT */
+        .features-list { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto 20px auto; width: 100%; }
         .feat-item { position: relative; width: 100%; padding: 3px; border-radius: 15px; overflow: hidden; background: transparent; transform: translateZ(0); }
         .feat-item::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(#d90429, #008000, #d90429, #008000, #d90429); animation: rotate 4s linear infinite; z-index: 0; }
         
+        /* GRID LAYOUT POUR GARANTIR L'ESPACE */
         .feat-inner { 
             position: relative; z-index: 1; background: var(--glass-bg); 
-            width: 100%; min-height: 60px; /* FIX HAUTEUR MIN */
-            border-radius: 12px; display: flex; align-items: center; justify-content: flex-start; /* FIX ALIGNEMENT */
-            gap: 20px; padding: 12px 25px; 
-            font-family: 'Share Tech Mono', monospace; text-transform: uppercase; 
-            letter-spacing: 1px; color: var(--text); font-weight: 800; font-size: 1.1rem; 
+            width: 100%; min-height: 70px;
+            border-radius: 12px; 
+            display: grid; 
+            grid-template-columns: 50px 1fr; /* 50px pour icone, reste pour texte */
+            align-items: center; 
+            padding: 10px 20px; 
+            color: var(--text);
         }
         
-        /* FIX ICON DISTORTION */
         .feat-inner i { 
-            color: var(--primary); font-size: 1.6rem; 
-            flex-shrink: 0; /* INTERDIR LE RETRECISSEMENT */
-            width: 30px; text-align: center;
+            font-size: 1.8rem; color: var(--primary); 
+            display: flex; justify-content: center; align-items: center;
+        }
+        
+        .feat-text-group {
+            display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap;
+        }
+        
+        .feat-title { 
+            font-family: 'Share Tech Mono', monospace; text-transform: uppercase; 
+            font-weight: 800; font-size: 1.2rem; letter-spacing: 1px;
+        }
+        
+        .feat-sub { 
+            font-size: 0.9rem; opacity: 0.7; font-weight: 600; white-space: nowrap;
         }
         
         body.dark-mode .feat-inner { background: #1a1a1a; }
@@ -156,6 +177,7 @@
         .detail-container{background:var(--glass-bg);backdrop-filter:blur(30px);padding:40px;border-radius:40px;margin-top:20px;border:1px solid var(--primary);text-align:center;box-shadow:var(--glass-shadow)}
         .detail-img{width:100%;height:auto;max-height:500px;object-fit:cover;margin:30px 0;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.1)}
         
+        /* --- DETAILS TEXTE & TABLEAUX (Final Fix) --- */
         .detail-desc { 
             font-size: 1.05rem; opacity: 0.9; margin: 20px auto; 
             max-width: 900px; line-height: 1.8; text-align: left; 
@@ -234,10 +256,16 @@
             .detail-desc table { font-size: 0.85rem; width: 100% !important; display: table; }
             .detail-desc th, .detail-desc td { padding: 10px 5px; white-space: normal !important; word-break: break-word; }
             
-            /* FIX SPACIOUS HERO MOBILE */
-            .feat-inner { justify-content: flex-start; }
-            .feat-inner span { width: 100%; display: flex; justify-content: space-between; align-items: center; }
-            .feat-inner small { font-size: 0.8rem; opacity: 0.8; margin-left: auto; }
+            /* FIX SPACIOUS HERO MOBILE (GRID) */
+            .feat-inner {
+                grid-template-columns: 40px 1fr; /* ICONE FIXE, TEXTE FLUIDE */
+                padding: 10px 15px;
+            }
+            .feat-text-group { 
+                flex-direction: row; 
+                flex-wrap: nowrap; /* Force sur une ligne si possible */
+            }
+            .feat-sub { margin-left: auto; } /* Subtexte à droite */
         }
     </style>
 </head>
@@ -312,6 +340,7 @@
                     <div onclick="changeLang('dr_la')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> Darija (Lat)</div>
                     <div onclick="changeLang('dr_ar')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> الدارجة</div>
                     <div onclick="changeLang('en')"><img src="https://flagcdn.com/w40/us.png" class="flag-icon"> English</div>
+                    <div onclick="changeLang('es')"><img src="https://flagcdn.com/w40/es.png" class="flag-icon"> Español</div>
                 </div>
             </div>
         </div>
@@ -328,11 +357,51 @@
                         <div id="hero-unit" class="sub-title" data-i18n="hero_sub">MEGA / SECONDE</div>
                         
                         <div class="features-list">
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-gamepad"></i> <span><span id="hero-feat1-txt">Gaming</span> <small id="hero-feat1-sub">0ms</small></span></div></div>
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-film"></i> <span><span id="hero-feat2-txt">8K UHD</span> <small id="hero-feat2-sub">Zéro Lag</small></span></div></div>
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-bolt"></i> <span><span id="hero-feat3-txt">Speed</span> <small id="hero-feat3-sub">Max</small></span></div></div>
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-wifi"></i> <span><span id="hero-feat4-txt">Wifi 6</span> <small id="hero-feat4-sub">Pro</small></span></div></div>
-                            <div class="feat-item"><div class="feat-inner"><i class="fas fa-check-circle"></i> <span><span id="hero-feat5-txt">Install</span> <small id="hero-feat5-sub">Gratuite</small></span></div></div>
+                            <div class="feat-item">
+                                <div class="feat-inner">
+                                    <i class="fas fa-gamepad"></i> 
+                                    <div class="feat-text-group">
+                                        <span class="feat-title" id="hero-feat1-txt">Gaming</span> 
+                                        <span class="feat-sub" id="hero-feat1-sub">0ms</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feat-item">
+                                <div class="feat-inner">
+                                    <i class="fas fa-film"></i> 
+                                    <div class="feat-text-group">
+                                        <span class="feat-title" id="hero-feat2-txt">8K UHD</span> 
+                                        <span class="feat-sub" id="hero-feat2-sub">Zéro Lag</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feat-item">
+                                <div class="feat-inner">
+                                    <i class="fas fa-bolt"></i> 
+                                    <div class="feat-text-group">
+                                        <span class="feat-title" id="hero-feat3-txt">Speed</span> 
+                                        <span class="feat-sub" id="hero-feat3-sub">Max</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feat-item">
+                                <div class="feat-inner">
+                                    <i class="fas fa-wifi"></i> 
+                                    <div class="feat-text-group">
+                                        <span class="feat-title" id="hero-feat4-txt">Wifi 6</span> 
+                                        <span class="feat-sub" id="hero-feat4-sub">Pro</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feat-item">
+                                <div class="feat-inner">
+                                    <i class="fas fa-check-circle"></i> 
+                                    <div class="feat-text-group">
+                                        <span class="feat-title" id="hero-feat5-txt">Install</span> 
+                                        <span class="feat-sub" id="hero-feat5-sub">Gratuite</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="price-hero-wrapper">
@@ -523,6 +592,16 @@
                 news_title:"Exclusive Deals", news_desc:"Get best offers.", sub_btn:"Subscribe",
                 ad_label:"Advertisement", reviews_title:"Customer Reviews", reviews_prod:"Product Review", add_review:"Add Review",
                 view_offer:"VIEW OFFER", rights:"All rights reserved."
+            },
+            es: { 
+                home:"Inicio", fibre:"Fibra", produit:"Productos", forfait:"Planes", promo:"Ofertas", reviews:"Reseñas", contact:"Contacto", 
+                welcome_title:"NUESTRAS OFERTAS", contact_title:"Contáctanos", send:"Enviar", cmd:"Ver", cmd_now:"ORDENAR AHORA", 
+                hero_badge:"EXCLUSIVO MARRUECOS", hero_sub:"MEGA / SEGUNDO", notif_text:"¡Instalación Gratis 1000M!", flash_promo:"OFERTA FLASH",
+                back:"Volver", modal_text:"Rellene para pedir:", confirm:"Confirmar", 
+                ph_name:"Nombre", ph_phone:"Teléfono", ph_msg:"Mensaje...", ph_email:"Correo", 
+                news_title:"Ofertas Exclusivas", news_desc:"Recibe las mejores ofertas.", sub_btn:"Suscribirse",
+                ad_label:"Publicidad", reviews_title:"Opiniones Clientes", reviews_prod:"Opinión del producto", add_review:"Añadir reseña",
+                view_offer:"VER OFERTA", rights:"Todos los derechos reservados."
             }
         };
 
@@ -638,13 +717,17 @@
 
         // --- SYSTEME DE TRADUCTION DB (SMART) ---
         function getTranslatedContent(offer, field) {
-            // Regarde si on est en Arabe/Darija et si le champ _ar existe
+            // Arabe / Darija
             if ((currentLang === 'ar' || currentLang === 'dr_ar') && offer[field + '_ar']) {
                 return offer[field + '_ar'];
             }
-            // Regarde si on est en Anglais et si le champ _en existe
+            // Anglais
             if (currentLang === 'en' && offer[field + '_en']) {
                 return offer[field + '_en'];
+            }
+            // Espagnol
+            if (currentLang === 'es' && offer[field + '_es']) {
+                return offer[field + '_es'];
             }
             // Sinon, retourne le français par défaut
             return offer[field];
