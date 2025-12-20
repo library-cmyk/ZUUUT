@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -67,9 +67,13 @@
             box-shadow: inset 0 0 10px rgba(255, 94, 0, 0.1); border: 1px solid rgba(255, 94, 0, 0.3);
         }
         
-        #lang-menu{background:var(--glass-bg); color:var(--text); border:var(--glass-border); position:absolute; top:70px; right:20px; padding:10px; border-radius:15px; display:none; box-shadow:0 10px 30px rgba(0,0,0,0.2); width:160px; z-index:2001;}
-        #lang-menu div{padding:10px; cursor:pointer; border-radius:8px; font-weight:600;} 
+        /* --- LANG MENU AVEC IMAGES --- */
+        #lang-menu{background:var(--glass-bg); color:var(--text); border:var(--glass-border); position:absolute; top:70px; right:20px; padding:10px; border-radius:15px; display:none; box-shadow:0 10px 30px rgba(0,0,0,0.2); width:180px; z-index:2001;}
+        #lang-menu div{padding:10px; cursor:pointer; border-radius:8px; font-weight:600; display:flex; align-items:center; gap:10px;} 
         #lang-menu div:hover{background:rgba(255,94,0,0.1);color:var(--primary)}
+        
+        .flag-icon { width: 24px; height: auto; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
         .mobile-controls { display: none; align-items: center; gap: 20px; } 
         .menu-toggle, .mobile-theme-btn, .lang-mobile-btn { font-size: 1.5rem; color: var(--text); cursor: pointer; background:none; border:none;}
 
@@ -245,16 +249,8 @@
             #detail-price { font-size: 2.2rem !important; }
             
             /* --- MOBILE TABLE FIX (RETOUR A LA LIGNE) --- */
-            .detail-desc table {
-                font-size: 0.85rem; 
-                width: 100% !important;
-                display: table;
-            }
-            .detail-desc th, .detail-desc td {
-                padding: 10px 5px;
-                white-space: normal !important; /* ALLOW WRAP */
-                word-break: break-word; 
-            }
+            .detail-desc table { font-size: 0.85rem; width: 100% !important; display: table; }
+            .detail-desc th, .detail-desc td { padding: 10px 5px; white-space: normal !important; word-break: break-word; }
         }
     </style>
 </head>
@@ -324,11 +320,11 @@
                 </div>
                 
                 <div id="lang-menu">
-                    <div onclick="changeLang('fr')">🇫🇷 Français</div>
-                    <div onclick="changeLang('ar')">🇲🇦 العربية</div>
-                    <div onclick="changeLang('dr_la')">💬 Darija (Lat)</div>
-                    <div onclick="changeLang('dr_ar')">🇲🇦 الدارجة</div>
-                    <div onclick="changeLang('en')">🇺🇸 English</div>
+                    <div onclick="changeLang('fr')"><img src="https://flagcdn.com/w40/fr.png" class="flag-icon"> Français</div>
+                    <div onclick="changeLang('ar')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> العربية</div>
+                    <div onclick="changeLang('dr_la')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> Darija (Lat)</div>
+                    <div onclick="changeLang('dr_ar')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> الدارجة</div>
+                    <div onclick="changeLang('en')"><img src="https://flagcdn.com/w40/us.png" class="flag-icon"> English</div>
                 </div>
             </div>
         </div>
@@ -745,7 +741,7 @@
             currentLang = l; document.getElementById('lang-menu').style.display='none'; 
             document.body.className = ''; 
             if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
-            if(l==='ar'||l==='dr_ar') document.body.classList.add('rtl'); // FIX POUR DARIJA LATIN
+            if(l==='ar'||l==='dr_ar') document.body.classList.add('rtl'); // FIX: Darija (Lat) reste LTR
             
             document.querySelectorAll('[data-i18n]').forEach(el=>{ 
                 const k=el.getAttribute('data-i18n'); 
