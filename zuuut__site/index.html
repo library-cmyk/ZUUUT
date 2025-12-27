@@ -12,6 +12,13 @@
     
     <meta http-equiv="Cache-Control" content="max-age=31536000">
     
+    <script>
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+    </script>
+    <style>
+        html { scroll-behavior: auto !important; overscroll-behavior-y: none; }
+    </style>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org", "@type": "WebSite", "name": "Zuuut Store", "url": "https://zuuut.store/"
@@ -70,7 +77,7 @@
         .mobile-controls { display: none; align-items: center; gap: 20px; } 
         .menu-toggle, .mobile-theme-btn, .lang-mobile-btn { font-size: 1.5rem; color: var(--text); cursor: pointer; background:none; border:none;}
 
-        /* --- HERO & GRID SYSTEM --- */
+        /* --- HERO --- */
         .hero-wrapper { position: relative; border-radius: 40px; padding: 4px; background: rgba(0,0,0,0.05); margin: 30px 0; z-index: 1; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.15); }
         .hero-wrapper::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(#d90429, #008000, #d90429, #008000); animation: rotate 8s linear infinite; z-index: -1; filter:blur(10px); }
         .hero-fibre { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-radius: 36px; padding: 40px 20px; text-align: center; color: #2c3e50; position: relative; z-index: 2; }
@@ -131,13 +138,19 @@
         @keyframes slideUpAd { from { transform: translateY(100%); } to { transform: translateY(0); } }
         .close-ad { position: absolute; top: -15px; right: 10px; background: var(--primary); color: white; border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; border: 2px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
 
-        #view-detail, #view-reviews {display:none;animation:fadeIn 0.2s} /* FASTER FADEIN */
+        #view-detail, #view-reviews {display:none;animation:fadeIn 0.2s}
         .detail-container{background:var(--glass-bg);backdrop-filter:blur(30px);padding:40px;border-radius:40px;margin-top:20px;border:1px solid var(--primary);text-align:center;box-shadow:var(--glass-shadow)}
         
-        /* FIX JUMPING IMAGE */
-        .detail-img{width:100%; height:auto; max-height:500px; object-fit:cover; margin:30px 0; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.1); min-height: 250px; background: rgba(0,0,0,0.05); }
+        /* FIX JUMPING IMAGE (V15) */
+        .detail-img {
+            width:100%; height:auto; 
+            max-height:500px; object-fit:cover; 
+            margin:30px 0; border-radius:20px; 
+            box-shadow:0 10px 40px rgba(0,0,0,0.1);
+            min-height: 300px; /* RESERVE ESPACE */
+            background: rgba(0,0,0,0.05);
+        }
         
-        /* --- DETAILS TEXTE & TABLEAUX --- */
         .detail-desc { font-size: 1.05rem; opacity: 0.9; margin: 20px auto; max-width: 900px; line-height: 1.8; text-align: left; overflow-wrap: break-word; color: var(--text); padding: 0 10px; }
         .detail-desc img { max-width: 100%; height: auto !important; border-radius: 10px; display: block; margin: 15px auto; object-fit: contain; }
         
@@ -258,7 +271,7 @@
                     <i class="fas fa-globe"></i>
                 </button>
                 
-                <div class="logo" onclick="router('all')">ZUUUT<span>.</span></div>
+                <div class="logo" onclick="router('all')" style="cursor:pointer">ZUUUT<span>.</span></div>
                 
                 <div class="mobile-controls">
                     <button class="mobile-theme-btn" onclick="toggleTheme()" aria-label="Mode Sombre">
@@ -275,6 +288,9 @@
                     <a href="#produit" onclick="event.preventDefault(); router('produit')" id="btn-produit" data-i18n="produit"><i class="fas fa-box-open"></i> Produits</a>
                     <a href="#forfait" onclick="event.preventDefault(); router('forfait')" id="btn-forfait" data-i18n="forfait"><i class="fas fa-mobile-alt"></i> Forfaits</a>
                     <a href="#promo" onclick="event.preventDefault(); router('promo')" id="btn-promo" data-i18n="promo"><i class="fas fa-percentage"></i> Promos</a>
+                    
+                    <a href="blog.html" style="color:var(--primary); font-weight:bold;"><i class="fas fa-newspaper"></i> Blog</a>
+
                     <a href="#reviews" onclick="event.preventDefault(); router('reviews')" id="btn-reviews" data-i18n="reviews"><i class="fas fa-star"></i> Avis</a>
                     <a href="#contact" onclick="event.preventDefault(); router('contact')" id="btn-contact" data-i18n="contact"><i class="fas fa-envelope"></i> Contact</a>
                     
@@ -305,7 +321,7 @@
                         <div id="hero-unit" class="sub-title" data-i18n="hero_sub">MEGA / SECONDE</div>
                         
                         <div class="features-list">
-                            <div class="feat-item">
+                            <div class="feat-item" id="hero-feat1">
                                 <div class="feat-inner">
                                     <i class="fas fa-gamepad"></i> 
                                     <div class="feat-text-group">
@@ -314,7 +330,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="feat-item">
+                            <div class="feat-item" id="hero-feat2">
                                 <div class="feat-inner">
                                     <i class="fas fa-film"></i> 
                                     <div class="feat-text-group">
@@ -323,7 +339,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="feat-item">
+                            <div class="feat-item" id="hero-feat3">
                                 <div class="feat-inner">
                                     <i class="fas fa-bolt"></i> 
                                     <div class="feat-text-group">
@@ -332,7 +348,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="feat-item">
+                            <div class="feat-item" id="hero-feat4">
                                 <div class="feat-inner">
                                     <i class="fas fa-wifi"></i> 
                                     <div class="feat-text-group">
@@ -341,7 +357,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="feat-item">
+                            <div class="feat-item" id="hero-feat5">
                                 <div class="feat-inner">
                                     <i class="fas fa-check-circle"></i> 
                                     <div class="feat-text-group">
@@ -352,15 +368,15 @@
                             </div>
                         </div>
                         
-                        <div class="price-hero-wrapper">
-                            <div id="hero-price" class="price-hero">
-                                <i class="fas fa-tag"></i> 949,00 Dhs
+                        <div class="price-hero-wrapper" id="hero-price">
+                            <div class="price-hero">
+                                <i class="fas fa-tag"></i> <span id="hero-price-txt">949,00 Dhs</span>
                             </div>
                         </div>
                         
-                        <div class="btn-hero-wrapper" onclick="openModal({title:'Fibre 1000 Mega', price:949})">
-                            <button id="hero-btn" class="btn-hero" aria-label="Commander">
-                                <i class="fas fa-rocket"></i> <span data-i18n="cmd_now">COMMANDER MAINTENANT</span>
+                        <div class="btn-hero-wrapper" onclick="openModal({title:'Fibre 1000 Mega', price:949})" id="hero-btn">
+                            <button class="btn-hero" aria-label="Commander">
+                                <i class="fas fa-rocket"></i> <span data-i18n="cmd_now" id="hero-btn-txt">COMMANDER MAINTENANT</span>
                             </button>
                         </div>
                     </div>
@@ -472,17 +488,22 @@
         </div>
     </div>
 
-    <footer>
-    <p>&copy; 2025 Zuuut Store. <span data-i18n="rights">Tous droits réservés.</span></p>
-    <p style="font-size:0.8rem; margin-top:10px;">
-        <a href="privacy.html" style="color:var(--text); opacity:0.7; text-decoration:underline;">Politique de Confidentialité</a>
-    </p>
+    <footer style="background: var(--card-bg); padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); margin-top: 50px;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2 style="color: var(--primary); font-family: 'Share Tech Mono'; margin-bottom: 10px;">ZUUUT<span style="color:var(--text)">.</span></h2>
+            <p style="opacity: 0.7; font-size: 0.9rem; margin-bottom: 20px;">Le spécialiste de la Fibre Optique et du High-Tech au Maroc.</p>
+            
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+                <a href="blog.html" style="text-decoration: none; color: var(--text); font-weight: bold; font-size: 0.9rem;"><i class="fas fa-newspaper"></i> Blog & News</a>
+                <a href="legal.html" style="text-decoration: none; color: var(--text); font-weight: bold; font-size: 0.9rem;"><i class="fas fa-balance-scale"></i> Mentions Légales</a>
+                <a href="privacy.html" style="text-decoration: none; color: var(--text); font-weight: bold; font-size: 0.9rem;"><i class="fas fa-user-shield"></i> Confidentialité</a>
+            </div>
+
+            <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2025 Zuuut Store. Tous droits réservés.</p>
+        </div>
     </footer>
 
     <script>
-        // --- DISABLE AUTOMATIC SCROLL RESTORATION (FIX JUMP) ---
-        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-
         const firebaseConfig = { apiKey: "AIzaSyA8SNo_lyJ0CfkZ9lTRRF7pKajx_VeM8QQ", authDomain: "zuuut-store-maroc.firebaseapp.com", projectId: "zuuut-store-maroc", storageBucket: "zuuut-store-maroc.firebasestorage.app", messagingSenderId: "364412979596", appId: "1:364412979596:web:aa47d8253bfd712ffeeea9" };
         firebase.initializeApp(firebaseConfig); const db = firebase.firestore();
 
@@ -604,9 +625,14 @@
                                 
                                 document.getElementById(htmlID+'-txt').innerText = mainTxt;
                                 document.getElementById(htmlID+'-sub').innerText = subTxt;
-                            } else { 
+                            } else if (htmlID === 'hero-btn') {
+                                document.getElementById('hero-btn-txt').innerText = data[dbID].text;
+                            } else if (htmlID === 'hero-price') {
+                                document.getElementById('hero-price-txt').innerText = data[dbID].text;
+                            } else {
                                 el.innerText = data[dbID].text; 
                             }
+                            el.style.display = data[dbID].active ? '' : 'none'; 
                         } 
                     }; 
                     sync('hero-tagline', 'h_tagline'); sync('hero-number', 'h_number'); sync('hero-unit', 'h_unit'); sync('hero-price', 'h_price'); sync('hero-btn', 'h_btn'); 
@@ -643,7 +669,7 @@
             });
         }
 
-        // --- HELPER: CLEAN TEXT ---
+        // --- HELPER: CLEAN TEXT (NO CODE) ---
         function getCleanPreview(html) {
             if(!html) return "";
             let temp = html.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
@@ -657,15 +683,26 @@
             return temp.substring(0, 100) + "...";
         }
 
+        // --- HELPER: URL SLUG MAKER ---
         function createSlug(title) {
             return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
         }
 
-        // --- SYSTEME DE TRADUCTION ---
+        // --- SYSTEME DE TRADUCTION DB (SMART) ---
         function getTranslatedContent(offer, field) {
-            if ((currentLang === 'ar' || currentLang === 'dr_ar') && offer[field + '_ar']) return offer[field + '_ar'];
-            if (currentLang === 'en' && offer[field + '_en']) return offer[field + '_en'];
-            if (currentLang === 'es' && offer[field + '_es']) return offer[field + '_es'];
+            // Arabe / Darija
+            if ((currentLang === 'ar' || currentLang === 'dr_ar') && offer[field + '_ar']) {
+                return offer[field + '_ar'];
+            }
+            // Anglais
+            if (currentLang === 'en' && offer[field + '_en']) {
+                return offer[field + '_en'];
+            }
+            // Espagnol
+            if (currentLang === 'es' && offer[field + '_es']) {
+                return offer[field + '_es'];
+            }
+            // Sinon, retourne le français par défaut
             return offer[field];
         }
 
@@ -678,6 +715,7 @@
                 const e = document.createElement('div'); e.className = 'card-wrapper'; e.onclick = () => openDetail(o.id);
                 const myColor = colors[index % colors.length]; e.style.setProperty('--card-color', myColor);
                 
+                // TRADUCTION CONTENU
                 let displayTitle = getTranslatedContent(o, 'title');
                 let displayDescRaw = getTranslatedContent(o, 'desc');
                 let cleanDesc = getCleanPreview(displayDescRaw);
@@ -722,6 +760,7 @@
 
             document.title = offer.title + " | Zuuut Store";
             
+            // TRADUCTION DETAIL
             let displayTitle = getTranslatedContent(offer, 'title');
             let displayDesc = getTranslatedContent(offer, 'desc');
 
@@ -729,7 +768,14 @@
             let cleanMeta = getCleanPreview(displayDesc);
             if (metaDesc) metaDesc.setAttribute("content", cleanMeta);
 
-            db.runTransaction((t) => { const ref=db.collection('offers').doc(offer.id); return t.get(ref).then((d) => { if (!d.exists) return; t.update(ref, { views: (d.data().views || 0) + 1 }); }); }).catch(e=>{});
+            // --- VIEW COUNT FIX (ID BASED) ---
+            db.runTransaction((t) => { 
+                const ref=db.collection('offers').doc(offer.id); 
+                return t.get(ref).then((d) => { 
+                    if (!d.exists) return; 
+                    t.update(ref, { views: (d.data().views || 0) + 1 }); 
+                }); 
+            }).catch(e=>{});
 
             document.getElementById('detail-title').innerText=displayTitle; 
             document.getElementById('detail-price').innerText=offer.price+' DH'; 
@@ -741,7 +787,7 @@
             document.getElementById('view-offers').style.display='none'; 
             document.getElementById('view-detail').style.display='block'; 
             
-            // --- FIX JUMPING: Scroll instantané ---
+            // --- FIX JUMPING: SCROLL ONLY ONCE ---
             window.scrollTo(0,0);
         }
 
@@ -815,8 +861,8 @@
                 renderOffers(t); 
                 
                 if(t === 'all') {
-                    // --- CLEAN URL RESET ---
-                    history.pushState(null, null, ' ');
+                    // --- CLEAN URL RESET (FIX) ---
+                    history.pushState(null, null, ' '); // Efface le #hash
                     window.scrollTo({top:0, behavior:'smooth'});
                 } else {
                     const divider = document.querySelector('.section-divider');
