@@ -1,65 +1,90 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Politique de Confidentialité - Zuuut Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #f9f9f9; }
-        .container { background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        h1 { color: #ff5e00; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        h2 { color: #2c3e50; margin-top: 30px; }
-        p { margin-bottom: 15px; }
-        ul { margin-bottom: 15px; padding-left: 20px; }
-        a { color: #ff5e00; text-decoration: none; }
-        .footer { margin-top: 50px; font-size: 0.8rem; text-align: center; color: #777; border-top: 1px solid #eee; padding-top: 20px; }
+        :root { --primary: #ff5e00; --text: #2c3e50; --bg: #f9f9f9; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 50px auto; background: #fff; padding: 50px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        h1 { color: var(--primary); font-size: 2.2rem; border-bottom: 3px solid var(--primary); padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { font-size: 1.3rem; font-weight: 700; margin-top: 30px; color: #000; display: flex; align-items: center; gap: 10px; }
+        h2::before { content: ''; display: block; width: 8px; height: 25px; background: var(--primary); border-radius: 4px; }
+        p { margin-bottom: 15px; font-size: 0.95rem; opacity: 0.9; }
+        ul { margin-bottom: 20px; padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        a:hover { text-decoration: underline; }
+        .btn-back { display: inline-block; margin-top: 30px; padding: 12px 30px; background: var(--primary); color: white; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        .btn-back:hover { background: #e65100; text-decoration: none; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3); }
+        
+        @media (max-width: 600px) {
+            .container { padding: 25px; margin: 20px; }
+            h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>Politique de Confidentialité</h1>
-        <p><strong>Dernière mise à jour :</strong> 19 Décembre 2025</p>
+        <p><strong>Dernière mise à jour :</strong> 27 Décembre 2025</p>
+        
+        <p>Bienvenue sur <strong>Zuuut Store</strong> (accessible via https://zuuut.store). La protection de vos données personnelles est une priorité absolue pour nous. Cette politique de confidentialité décrit de manière transparente comment nous collectons, utilisons, protégeons et partageons vos informations lorsque vous utilisez nos services.</p>
 
-        <p>Bienvenue sur <strong>Zuuut Store</strong> (accessible via https://zuuut.store). Nous accordons une grande importance à la confidentialité de vos données. Cette politique explique comment nous collectons, utilisons et protégeons vos informations.</p>
+        <h2>1. Conformité Légale</h2>
+        <p>Cette politique est établie conformément aux réglementations en vigueur, notamment la loi marocaine n° 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel.</p>
 
-        <h2>1. Collecte des Informations</h2>
+        <h2>2. Les Données que nous collectons</h2>
         <p>Nous pouvons collecter les types d'informations suivants :</p>
         <ul>
-            <li><strong>Informations fournies volontairement :</strong> Nom, numéro de téléphone et adresse e-mail lorsque vous remplissez nos formulaires de commande ou de contact.</li>
-            <li><strong>Informations automatiques :</strong> Adresse IP, type de navigateur et pages visitées (via nos outils d'analyse et Firebase).</li>
+            <li><strong>Informations d'identification :</strong> Nom complet, Numéro de téléphone, Adresse e-mail (lorsque vous remplissez un formulaire de commande ou de contact).</li>
+            <li><strong>Données techniques :</strong> Adresse IP, type de navigateur, fournisseur d'accès internet (FAI), horodatage et pages visitées. Ces données sont collectées automatiquement via nos outils d'analyse (Firebase, Cloudflare) pour améliorer la sécurité et l'expérience utilisateur.</li>
         </ul>
 
-        <h2>2. Utilisation des Cookies et Publicités (Google AdSense)</h2>
-        <p>Nous utilisons <strong>Google AdSense</strong> pour diffuser des publicités. Google utilise des cookies pour diffuser des annonces basées sur vos visites précédentes sur notre site ou d'autres sites Web.</p>
+        <h2>3. Utilisation des Données</h2>
+        <p>Vos données sont utilisées exclusivement pour :</p>
         <ul>
-            <li>Les fournisseurs tiers, y compris Google, utilisent des cookies pour diffuser des annonces.</li>
-            <li>Vous pouvez désactiver la publicité personnalisée dans les <a href="https://www.google.com/settings/ads" target="_blank">Paramètres des annonces</a>.</li>
+            <li>Traiter et livrer vos commandes d'installation Fibre Optique ou produits High-Tech.</li>
+            <li>Vous contacter (via Téléphone ou WhatsApp) pour la confirmation de rendez-vous technique.</li>
+            <li>Améliorer la structure et le contenu de notre site Web.</li>
+            <li>Prévenir les fraudes et assurer la sécurité du site.</li>
         </ul>
 
-        <h2>3. Utilisation de Vos Données</h2>
-        <p>Les données collectées servent uniquement à :</p>
+        <h2>4. Cookies & Publicité (Google AdSense)</h2>
+        <p>Notre site utilise des services tiers pour diffuser des annonces publicitaires :</p>
         <ul>
-            <li>Traiter vos commandes et demandes d'installation Fibre.</li>
-            <li>Vous contacter via WhatsApp ou téléphone pour confirmer un rendez-vous.</li>
-            <li>Améliorer l'expérience utilisateur sur notre site.</li>
+            <li><strong>Google AdSense :</strong> Google, en tant que fournisseur tiers, utilise des cookies pour diffuser des annonces sur notre site.</li>
+            <li><strong>Cookie DoubleClick DART :</strong> L'utilisation du cookie DART permet à Google et à ses partenaires de diffuser des annonces à nos utilisateurs en fonction de leur visite sur notre site et/ou d'autres sites sur Internet.</li>
         </ul>
+        <p>Les utilisateurs peuvent désactiver l'utilisation du cookie DART en visitant la politique de confidentialité du réseau de contenu et d'annonces Google à l'adresse suivante : <a href="https://policies.google.com/technologies/ads" target="_blank">https://policies.google.com/technologies/ads</a>.</p>
 
-        <h2>4. Protection des Données</h2>
-        <p>Nous mettons en œuvre des mesures de sécurité (via Firebase et Cloudflare) pour protéger vos informations personnelles. Nous ne vendons, n'échangeons ni ne transférons vos informations identifiables à des tiers.</p>
-
-        <h2>5. Consentement</h2>
-        <p>En utilisant notre site, vous consentez à notre politique de confidentialité.</p>
-
-        <h2>6. Contact</h2>
-        <p>Pour toute question concernant cette politique, vous pouvez nous contacter :</p>
+        <h2>5. Partage des Données</h2>
+        <p>Nous ne vendons, n'échangeons et ne transférons aucune information personnelle identifiable à des tiers à des fins commerciales. Toutefois, les données nécessaires (Nom, Adresse, Tél) peuvent être partagées avec :</p>
         <ul>
-            <li>Email : contact@zuuut.store</li>
-            <li>Téléphone : +212 690-565433</li>
+            <li><strong>Les Opérateurs Partenaires (Orange, Inwi, IAM) :</strong> Uniquement dans le but strict de procéder à l'installation technique de votre ligne Fibre.</li>
+            <li><strong>Autorités Légales :</strong> Si la loi l'exige pour protéger nos droits ou la sécurité d'autrui.</li>
         </ul>
-        
-        <div class="footer">
-            &copy; 2025 Zuuut Store. Tous droits réservés.
-        </div>
+
+        <h2>6. Sécurité des Données</h2>
+        <p>Nous mettons en œuvre une variété de mesures de sécurité pour préserver la sécurité de vos informations personnelles. Nous utilisons un cryptage de pointe (SSL/TLS) fourni par Cloudflare pour protéger les informations sensibles transmises en ligne.</p>
+
+        <h2>7. Vos Droits</h2>
+        <p>Conformément à la loi, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant. Pour exercer ce droit, veuillez nous contacter.</p>
+
+        <h2>8. Contactez-nous</h2>
+        <p>Pour toute question concernant cette politique de confidentialité, vous pouvez nous contacter :</p>
+        <ul>
+            <li><strong>Email :</strong> contact@zuuut.store</li>
+            <li><strong>Téléphone / WhatsApp :</strong> +212 690-565433</li>
+        </ul>
+
+        <center>
+            <a href="index.html" class="btn-back">← Retour à la Boutique</a>
+        </center>
     </div>
+
 </body>
 </html>
