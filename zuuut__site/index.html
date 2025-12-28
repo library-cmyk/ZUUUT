@@ -19,9 +19,66 @@
         html { scroll-behavior: auto !important; overscroll-behavior-y: none; }
     </style>
     
-    <script type="application/ld+json">
+<script type="application/ld+json">
     {
-      "@context": "https://schema.org", "@type": "WebSite", "name": "Zuuut Store", "url": "https://zuuut.store/"
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://zuuut.store/#website",
+          "url": "https://zuuut.store/",
+          "name": "Zuuut Store",
+          "description": "Le spécialiste de la Fibre Optique et du High-Tech au Maroc.",
+          "inLanguage": "fr-MA"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://zuuut.store/#organization",
+          "name": "Zuuut Store",
+          "url": "https://zuuut.store/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://i.imgur.com/Kz8ygFq.png",
+            "width": 112,
+            "height": 112
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+212-690-565433",
+            "contactType": "customer service",
+            "areaServed": "MA"
+          }
+        },
+        {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "SiteNavigationElement",
+              "position": 1,
+              "name": "Fibre",
+              "url": "https://zuuut.store/fibre.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 2,
+              "name": "Promos",
+              "url": "https://zuuut.store/promos.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 3,
+              "name": "Produits",
+              "url": "https://zuuut.store/produits.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 4,
+              "name": "Blog",
+              "url": "https://zuuut.store/blog.html"
+            }
+          ]
+        }
+      ]
     }
     </script>
     
