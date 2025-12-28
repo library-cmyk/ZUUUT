@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-nous | Zuuut Store</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://zuuut.store/#website",
+          "url": "https://zuuut.store/",
+          "name": "Zuuut Store",
+          "description": "Le spécialiste de la Fibre Optique et du High-Tech au Maroc.",
+          "inLanguage": "fr-MA"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://zuuut.store/#organization",
+          "name": "Zuuut Store",
+          "url": "https://zuuut.store/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://i.imgur.com/Kz8ygFq.png",
+            "width": 112,
+            "height": 112
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+212-690-565433",
+            "contactType": "customer service",
+            "areaServed": "MA"
+          }
+        },
+        {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "SiteNavigationElement",
+              "position": 1,
+              "name": "Fibre",
+              "url": "https://zuuut.store/fibre.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 2,
+              "name": "Promos",
+              "url": "https://zuuut.store/promos.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 3,
+              "name": "Produits",
+              "url": "https://zuuut.store/produits.html"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 4,
+              "name": "Forfaits",
+              "url": "https://zuuut.store/forfaits.html"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <style>
+        :root{--primary:#ff5e00;--text:#2c3e50;--bg:#f4f7f6;}
+        body{font-family:'Poppins',sans-serif;margin:0;background:var(--bg);color:var(--text);}
+        .container{max-width:600px;margin:50px auto;padding:20px;}
+        .glass-form{background:white;padding:40px;border-radius:30px;box-shadow:0 10px 40px rgba(0,0,0,0.05);text-align:center;}
+        input,textarea{width:100%;padding:15px;margin-bottom:15px;border-radius:15px;border:1px solid #ddd;outline:none;font-family:'Poppins';}
+        .btn-glow{background:linear-gradient(90deg,#ff5e00,#ff8800);color:#fff;padding:15px 40px;border-radius:50px;font-weight:800;border:none;cursor:pointer;width:100%;font-size:1.1rem;}
+        h1{color:var(--primary);margin-bottom:10px;}
+        .back-link{display:block;margin-top:20px;text-decoration:none;color:#888;font-size:0.9rem;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="glass-form">
+            <h1>Contactez Zuuut</h1>
+            <p style="margin-bottom:30px;opacity:0.7;">Une question sur la Fibre ou un produit ?</p>
+            
+            <button onclick="window.open('https://wa.me/212690565433','_blank')" style="background:#25D366;color:white;width:100%;padding:15px;border-radius:50px;border:none;font-weight:bold;margin-bottom:20px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;gap:10px;">
+                <i class="fab fa-whatsapp"></i> WhatsApp Direct
+            </button>
+            
+            <div style="display:flex;align-items:center;gap:10px;margin:20px 0;opacity:0.5;">
+                <div style="height:1px;background:#ccc;flex:1;"></div>OU<div style="height:1px;background:#ccc;flex:1;"></div>
+            </div>
+
+            <form onsubmit="sendMsg(event)">
+                <input type="text" id="c-name" placeholder="Votre Nom" required>
+                <input type="tel" id="c-phone" placeholder="Votre Téléphone" required>
+                <textarea id="c-msg" rows="5" placeholder="Votre Message..." required></textarea>
+                <button type="submit" class="btn-glow">ENVOYER</button>
+            </form>
+            
+            <a href="index.html" class="back-link">← Retour à l'accueil</a>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = { apiKey: "AIzaSyA8SNo_lyJ0CfkZ9lTRRF7pKajx_VeM8QQ", authDomain: "zuuut-store-maroc.firebaseapp.com", projectId: "zuuut-store-maroc", storageBucket: "zuuut-store-maroc.firebasestorage.app", messagingSenderId: "364412979596", appId: "1:364412979596:web:aa47d8253bfd712ffeeea9" };
+        firebase.initializeApp(firebaseConfig); const db = firebase.firestore();
+
+        function sendMsg(e) {
+            e.preventDefault();
+            db.collection("messages").add({
+                name: document.getElementById('c-name').value,
+                phone: document.getElementById('c-phone').value,
+                msg: document.getElementById('c-msg').value,
+                date: new Date().toLocaleString()
+            }).then(() => {
+                alert("Message Envoyé ! Abzou vous répondra bientôt.");
+                e.target.reset();
+            });
+        }
+    </script>
+</body>
+</html>
