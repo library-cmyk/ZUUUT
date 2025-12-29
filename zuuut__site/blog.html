@@ -3,71 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog High-Tech & Fibre Maroc - Zuuut Store</title>
-    <meta name="description" content="Actualités Fibre Optique, Gaming et High-Tech au Maroc.">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "@id": "https://zuuut.store/#website",
-          "url": "https://zuuut.store/",
-          "name": "Zuuut Store",
-          "description": "Le spécialiste de la Fibre Optique et du High-Tech au Maroc.",
-          "inLanguage": "fr-MA"
-        },
-        {
-          "@type": "Organization",
-          "@id": "https://zuuut.store/#organization",
-          "name": "Zuuut Store",
-          "url": "https://zuuut.store/",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://i.imgur.com/Kz8ygFq.png",
-            "width": 112,
-            "height": 112
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+212-690-565433",
-            "contactType": "customer service",
-            "areaServed": "MA"
-          }
-        },
-        {
-          "@type": "ItemList",
-          "itemListElement": [
-            {
-              "@type": "SiteNavigationElement",
-              "position": 1,
-              "name": "Fibre",
-              "url": "https://zuuut.store/fibre.html"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 2,
-              "name": "Promos",
-              "url": "https://zuuut.store/promos.html"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 3,
-              "name": "Produits",
-              "url": "https://zuuut.store/produits.html"
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "position": 4,
-              "name": "Forfaits",
-              "url": "https://zuuut.store/forfaits.html"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
+    <title>Blog High-Tech - Zuuut Store</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
     
@@ -76,81 +13,137 @@
 
     <style>
         :root { --primary: #ff5e00; --bg: #f4f7f6; --text: #333; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
-        .header { background: white; padding: 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        /* Header Simple */
+        .header { background: white; padding: 15px; text-align: center; margin-bottom: 30px; border-radius: 0 0 30px 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .logo { font-size: 1.8rem; font-weight: 900; color: #333; text-decoration: none; }
-        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .back-btn { display: inline-block; margin-top: 10px; text-decoration: none; color: #777; font-size: 0.9rem; }
+
+        /* LISTE DES ARTICLES */
+        .grid-posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .date { font-size: 0.8rem; color: #999; display: block; margin-bottom: 5px; }
+        .card h2 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--primary); }
         
-        .article-card { background: white; padding: 0; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 40px; overflow: hidden; animation: fadeIn 0.5s; }
-        .article-img { width: 100%; height: 250px; object-fit: cover; }
-        .article-content { padding: 30px; }
+        /* DETAIL ARTICLE */
+        #article-view { display: none; background: white; padding: 40px; border-radius: 30px; margin-top: 20px; }
+        #article-content img { max-width: 100%; height: auto; border-radius: 10px; margin: 20px 0; }
         
-        h1 { font-weight: 900; font-size: 2rem; margin-bottom: 10px; }
-        h2 { color: var(--primary); font-size: 1.6rem; margin-top: 0; font-weight: 800; line-height: 1.3; }
-        .meta { font-size: 0.8rem; color: #888; margin-bottom: 15px; display: block; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-home { display: inline-block; background: var(--primary); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(255, 94, 0, 0.3); transition: 0.3s; }
-        .btn-home:hover { transform: translateY(-3px); }
-        
-        /* CONTENT STYLES */
-        .article-text p { margin-bottom: 15px; }
-        .article-text img { max-width: 100%; border-radius: 10px; margin: 10px 0; }
-        
-        footer { text-align: center; padding: 40px; opacity: 0.7; font-size: 0.9rem; border-top: 1px solid #ddd; margin-top: 50px; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .loader { text-align: center; padding: 50px; font-size: 1.2rem; color: #777; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <a href="index.html" class="logo">ZUUUT<span style="color:var(--primary)">.</span> BLOG</a>
+        <a href="blog.html" class="logo" onclick="showList(event)">ZUUUT<span style="color:var(--primary)">.</span> BLOG</a>
+        <br>
+        <a href="index.html" class="back-btn">← Retour à la Boutique</a>
     </div>
 
     <div class="container">
-        <a href="index.html" class="btn-home"><i class="fas fa-arrow-left"></i> Retour à la Boutique</a>
+        
+        <div id="list-view">
+            <h1 style="text-align:center; margin-bottom:40px;">Derniers Articles</h1>
+            <div id="posts-grid" class="grid-posts">
+                <div class="loader">Recherche des articles...</div>
+            </div>
+        </div>
 
-        <div id="blog-posts">
-            <div style="text-align:center; padding:50px; color:#888;">Chargement des articles...</div>
+        <div id="article-view">
+            <button onclick="showList(event)" style="background:var(--primary); color:white; border:none; padding:10px 20px; border-radius:50px; cursor:pointer; margin-bottom:20px;">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <div id="article-content"></div>
         </div>
 
     </div>
 
-    <footer>
-        <p>&copy; 2025 Zuuut Store - Blog High Tech.</p>
-    </footer>
-
     <script>
+        // 1. CONFIGURATION FIREBASE (LA CONNEXION)
         const firebaseConfig = { apiKey: "AIzaSyA8SNo_lyJ0CfkZ9lTRRF7pKajx_VeM8QQ", authDomain: "zuuut-store-maroc.firebaseapp.com", projectId: "zuuut-store-maroc", storageBucket: "zuuut-store-maroc.firebasestorage.app", messagingSenderId: "364412979596", appId: "1:364412979596:web:aa47d8253bfd712ffeeea9" };
         firebase.initializeApp(firebaseConfig); const db = firebase.firestore();
 
-        db.collection('blog').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-            const container = document.getElementById('blog-posts');
-            container.innerHTML = '';
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
 
-            if (snapshot.empty) {
-                container.innerHTML = '<div style="text-align:center; padding:30px;">Aucun article pour le moment.</div>';
-                return;
-            }
+        if(articleId) loadArticle(articleId); else loadList();
 
-            snapshot.forEach(doc => {
-                const post = doc.data();
-                const card = document.createElement('article');
-                card.className = 'article-card';
+        // 2. FONCTION POUR CHARGER LA LISTE
+        function loadList() {
+            document.getElementById('list-view').style.display = 'block';
+            document.getElementById('article-view').style.display = 'none';
+            
+            const grid = document.getElementById('posts-grid');
+            
+            // 👇 HNA FIN KAYN L'FILTRE : "JIB LIYA GHIR TYPE = ARTICLE" 👇
+            db.collection('offers').where('type', '==', 'article').orderBy('date', 'desc').onSnapshot(s => {
+                grid.innerHTML = '';
                 
-                // Image par défaut si vide
-                const imgUrl = post.img || 'https://via.placeholder.com/800x400?text=Zuuut+Blog';
+                if (s.empty) { 
+                    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;">Aucun article trouvé.<br>Vérifiez que le Type est bien "Article" dans l\'Admin.</div>'; 
+                    return; 
+                }
 
-                card.innerHTML = `
-                    <img src="${imgUrl}" alt="${post.title}" class="article-img">
-                    <div class="article-content">
-                        <span class="meta"><i class="far fa-clock"></i> ${post.date}</span>
-                        <h2>${post.title}</h2>
-                        <div class="article-text">${post.content}</div>
-                    </div>
-                `;
-                container.appendChild(card);
+                s.forEach(doc => {
+                    const p = doc.data();
+                    const div = document.createElement('div');
+                    div.className = 'card';
+                    div.onclick = () => {
+                        window.history.pushState({}, '', `?id=${doc.id}`);
+                        loadArticle(doc.id);
+                    };
+                    // IMAGE PAR DEFAUT ILA MAKANETCH
+                    const img = p.img || 'https://via.placeholder.com/400x200?text=Zuuut+Blog';
+                    
+                    div.innerHTML = `
+                        <img src="${img}" class="card-img" loading="lazy">
+                        <div class="card-body">
+                            <span class="date">${p.date || 'Récemment'}</span>
+                            <h2>${p.title}</h2>
+                            <p style="font-size:0.9rem; color:#666;">Lire la suite...</p>
+                        </div>
+                    `;
+                    grid.appendChild(div);
+                });
             });
-        });
-    </script>
+        }
 
+        // 3. FONCTION POUR CHARGER UN ARTICLE SEUL
+        function loadArticle(id) {
+            document.getElementById('list-view').style.display = 'none';
+            document.getElementById('article-view').style.display = 'block';
+            window.scrollTo(0,0);
+            
+            const contentDiv = document.getElementById('article-content');
+            contentDiv.innerHTML = '<div class="loader">Chargement...</div>';
+
+            db.collection('offers').doc(id).get().then(doc => {
+                if(doc.exists) {
+                    const p = doc.data();
+                    const img = p.img || 'https://via.placeholder.com/800x400';
+                    
+                    contentDiv.innerHTML = `
+                        <img src="${img}" style="width:100%; border-radius:20px; max-height:400px; object-fit:cover;">
+                        <h1 style="margin:20px 0; color:#ff5e00;">${p.title}</h1>
+                        <div style="font-size:0.9rem; color:#999; margin-bottom:30px;"><i class="far fa-clock"></i> ${p.date}</div>
+                        <div class="article-body" style="font-size:1.1rem; line-height:1.8;">${p.desc}</div>
+                    `;
+                } else {
+                    contentDiv.innerHTML = '<p>Article introuvable.</p>';
+                }
+            });
+        }
+
+        function showList(e) {
+            e.preventDefault();
+            window.history.pushState({}, '', 'blog.html');
+            loadList();
+        }
+    </script>
 </body>
 </html>
