@@ -16,12 +16,11 @@
         body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: var(--text); }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         
-        /* Header Simple */
         .header { background: white; padding: 15px; text-align: center; margin-bottom: 30px; border-radius: 0 0 30px 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .logo { font-size: 1.8rem; font-weight: 900; color: #333; text-decoration: none; }
         .back-btn { display: inline-block; margin-top: 10px; text-decoration: none; color: #777; font-size: 0.9rem; }
 
-        /* LISTE DES ARTICLES */
+        /* LISTE */
         .grid-posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
         .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
         .card:hover { transform: translateY(-5px); }
@@ -30,7 +29,7 @@
         .date { font-size: 0.8rem; color: #999; display: block; margin-bottom: 5px; }
         .card h2 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--primary); }
         
-        /* DETAIL ARTICLE */
+        /* ARTICLE DETAIL */
         #article-view { display: none; background: white; padding: 40px; border-radius: 30px; margin-top: 20px; }
         #article-content img { max-width: 100%; height: auto; border-radius: 10px; margin: 20px 0; }
         
@@ -50,7 +49,7 @@
         <div id="list-view">
             <h1 style="text-align:center; margin-bottom:40px;">Derniers Articles</h1>
             <div id="posts-grid" class="grid-posts">
-                <div class="loader">Recherche des articles...</div>
+                <div class="loader"><i class="fas fa-spinner fa-spin"></i> Chargement...</div>
             </div>
         </div>
 
@@ -64,7 +63,6 @@
     </div>
 
     <script>
-        // 1. CONFIGURATION FIREBASE (LA CONNEXION)
         const firebaseConfig = { apiKey: "AIzaSyA8SNo_lyJ0CfkZ9lTRRF7pKajx_VeM8QQ", authDomain: "zuuut-store-maroc.firebaseapp.com", projectId: "zuuut-store-maroc", storageBucket: "zuuut-store-maroc.firebasestorage.app", messagingSenderId: "364412979596", appId: "1:364412979596:web:aa47d8253bfd712ffeeea9" };
         firebase.initializeApp(firebaseConfig); const db = firebase.firestore();
 
@@ -73,37 +71,39 @@
 
         if(articleId) loadArticle(articleId); else loadList();
 
-        // 2. FONCTION POUR CHARGER LA LISTE
         function loadList() {
             document.getElementById('list-view').style.display = 'block';
             document.getElementById('article-view').style.display = 'none';
-            
             const grid = document.getElementById('posts-grid');
             
-            // 👇 HNA FIN KAYN L'FILTRE : "JIB LIYA GHIR TYPE = ARTICLE" 👇
-            db.collection('offers').where('type', '==', 'article').orderBy('date', 'desc').onSnapshot(s => {
+            // ✅ FIX: On a enlevé .orderBy() ici pour éviter l'erreur d'index Google
+            db.collection('offers').where('type', '==', 'article').onSnapshot(s => {
                 grid.innerHTML = '';
-                
                 if (s.empty) { 
-                    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;">Aucun article trouvé.<br>Vérifiez que le Type est bien "Article" dans l\'Admin.</div>'; 
+                    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;">Aucun article trouvé.</div>'; 
                     return; 
                 }
 
-                s.forEach(doc => {
-                    const p = doc.data();
+                // On récupère tout et on trie en Javascript (C'est plus sûr)
+                let articles = [];
+                s.forEach(doc => { articles.push({id: doc.id, ...doc.data()}); });
+                
+                // Tri par timestamp (du plus récent au plus ancien)
+                articles.sort((a,b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+
+                articles.forEach(p => {
                     const div = document.createElement('div');
                     div.className = 'card';
                     div.onclick = () => {
-                        window.history.pushState({}, '', `?id=${doc.id}`);
-                        loadArticle(doc.id);
+                        window.history.pushState({}, '', `?id=${p.id}`);
+                        loadArticle(p.id);
                     };
-                    // IMAGE PAR DEFAUT ILA MAKANETCH
                     const img = p.img || 'https://via.placeholder.com/400x200?text=Zuuut+Blog';
                     
                     div.innerHTML = `
                         <img src="${img}" class="card-img" loading="lazy">
                         <div class="card-body">
-                            <span class="date">${p.date || 'Récemment'}</span>
+                            <span class="date">${p.date || 'Article'}</span>
                             <h2>${p.title}</h2>
                             <p style="font-size:0.9rem; color:#666;">Lire la suite...</p>
                         </div>
@@ -113,7 +113,6 @@
             });
         }
 
-        // 3. FONCTION POUR CHARGER UN ARTICLE SEUL
         function loadArticle(id) {
             document.getElementById('list-view').style.display = 'none';
             document.getElementById('article-view').style.display = 'block';
@@ -126,7 +125,6 @@
                 if(doc.exists) {
                     const p = doc.data();
                     const img = p.img || 'https://via.placeholder.com/800x400';
-                    
                     contentDiv.innerHTML = `
                         <img src="${img}" style="width:100%; border-radius:20px; max-height:400px; object-fit:cover;">
                         <h1 style="margin:20px 0; color:#ff5e00;">${p.title}</h1>
