@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Introuvable | Zuuut Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #ff5e00; --bg: #0f0f0f; --text: #fff; }
+        
+        body { 
+            margin: 0; padding: 0; height: 100vh; 
+            background: var(--bg); color: var(--text); 
+            display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; 
+            font-family: 'Poppins', sans-serif; overflow: hidden;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%);
+        }
+
+        .container { text-align: center; position: relative; z-index: 2; }
+        
+        /* GLITCH EFFECT TITLE */
+        .glitch {
+            font-size: 150px; font-weight: 900; 
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--primary); letter-spacing: -5px;
+            position: relative; animation: shake 2s infinite;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: "404"; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .glitch::before { color: #00ffff; z-index: -1; animation: glitch-anim-1 2s infinite linear alternate-reverse; opacity: 0.7; }
+        .glitch::after { color: #ff00ff; z-index: -2; animation: glitch-anim-2 2s infinite linear alternate-reverse; opacity: 0.7; }
+
+        h2 { font-size: 2rem; margin: 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+        p { color: #888; margin-bottom: 40px; font-size: 1.1rem; max-width: 500px; line-height: 1.5; }
+
+        /* BUTTON VIP */
+        .btn-home {
+            text-decoration: none; color: #000; background: var(--primary);
+            padding: 15px 50px; border-radius: 50px; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(255, 94, 0, 0.4);
+            transition: 0.3s; position: relative; overflow: hidden; display: inline-block;
+        }
+        .btn-home:hover { 
+            background: #fff; color: var(--primary); 
+            box-shadow: 0 0 40px rgba(255, 94, 0, 0.8); transform: scale(1.05);
+        }
+
+        /* BACKGROUND PARTICLES */
+        .bg-grid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 94, 0, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 94, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px; z-index: 1; pointer-events: none;
+            perspective: 100vh; transform: rotateX(20deg) scale(1.2); opacity: 0.5;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px,0); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px,0); }
+            40% { clip-path: inset(10% 0 50% 0); transform: translate(-2px,0); }
+            60% { clip-path: inset(80% 0 5% 0); transform: translate(2px,0); }
+            80% { clip-path: inset(30% 0 40% 0); transform: translate(-2px,0); }
+            100% { clip-path: inset(10% 0 60% 0); transform: translate(2px,0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); transform: translate(2px,0); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px,0); }
+            40% { clip-path: inset(30% 0 40% 0); transform: translate(2px,0); }
+            60% { clip-path: inset(10% 0 80% 0); transform: translate(-2px,0); }
+            80% { clip-path: inset(60% 0 10% 0); transform: translate(2px,0); }
+            100% { clip-path: inset(20% 0 80% 0); transform: translate(-2px,0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <div class="container">
+        <div class="glitch">404</div>
+        <h2>Connection Perdue</h2>
+        <p>Il semble que vous ayez pris un virage trop rapide avec la Fibre. Cette page n'existe plus ou a été déplacée.</p>
+        
+        <a href="/" class="btn-home">
+            <i class="fas fa-home"></i> Revenir à l'Accueil
+        </a>
+    </div>
+
+</body>
+</html>
