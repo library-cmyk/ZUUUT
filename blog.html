@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog High-Tech - Zuuut Store</title>
+    
+    <meta id="meta-desc" name="description" content="Toute l'actualité Tech et Fibre au Maroc.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "WebSite", "@id": "https://zuuut.store/#website", "url": "https://zuuut.store/", "name": "Zuuut Store", "inLanguage": "fr-MA" },
+        { "@type": "Organization", "@id": "https://zuuut.store/#organization", "name": "Zuuut Store", "logo": "https://i.imgur.com/Kz8ygFq.png" },
+        { "@type": "ItemList", "itemListElement": [
+            { "@type": "SiteNavigationElement", "position": 1, "name": "Fibre", "url": "https://zuuut.store/fibre.html" },
+            { "@type": "SiteNavigationElement", "position": 2, "name": "Blog", "url": "https://zuuut.store/blog.html" }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8017340007827546" crossorigin="anonymous"></script>
+
+    <style>
+        :root { --primary: #ff5e00; --bg: #f4f7f6; --text: #333; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        .header { background: white; padding: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: #333; text-decoration: none; }
+        .back-btn { position: absolute; left: 20px; top: 20px; text-decoration: none; color: #333; font-weight: bold; }
+
+        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+
+        /* LIST VIEW */
+        .grid-posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .card h2 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--primary); }
+        .date { font-size: 0.8rem; color: #999; }
+
+        /* ARTICLE VIEW */
+        #article-view { display: none; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 50px rgba(0,0,0,0.05); animation: fadeIn 0.5s; }
+        #article-content img { max-width: 100%; height: auto; border-radius: 10px; margin: 20px 0; }
+        #article-content h1 { color: var(--primary); font-size: 2.5rem; line-height: 1.2; }
+        
+        /* 🔥 SUGGESTIONS STYLE (NEW) 🔥 */
+        .suggestions-box { margin-top: 50px; padding-top: 30px; border-top: 2px dashed #eee; }
+        .suggestions-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; color: #333; }
+        .mini-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .mini-card { background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; overflow: hidden; border: 1px solid #eee; }
+        .mini-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,94,0,0.1); }
+        .mini-img { width: 100%; height: 120px; object-fit: cover; }
+        .mini-title { padding: 15px; font-size: 0.9rem; font-weight: bold; margin: 0; color: #333; line-height: 1.4; }
+
+        .loader { text-align: center; padding: 50px; font-size: 1.5rem; color: #ccc; }
+        .ad-space { background: #eee; border: 1px dashed #ccc; padding: 20px; text-align: center; margin: 30px 0; border-radius: 10px; font-size: 0.8rem; color: #777; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media(max-width:700px){ #article-view { padding: 20px; } #article-content h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html" class="back-btn"><i class="fas fa-home"></i></a>
+        <a href="blog.html" class="logo" onclick="showList(event)">ZUUUT<span style="color:var(--primary)">.</span> BLOG</a>
+    </div>
+
+    <div class="container">
+        
+        <div id="list-view">
+            <h1 style="text-align:center; margin-bottom:40px;">Dernières Actualités</h1>
+            <div id="posts-grid" class="grid-posts">
+                <div class="loader"><i class="fas fa-spinner fa-spin"></i> Chargement...</div>
+            </div>
+        </div>
+
+        <div id="article-view">
+            <button onclick="showList(event)" style="background:var(--primary); color:white; border:none; padding:10px 20px; border-radius:50px; cursor:pointer; margin-bottom:20px;">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            
+            <div id="article-content"></div>
+
+            <div class="ad-space">
+                <span>PUBLICITÉ</span>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8017340007827546" data-ad-slot="XXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <div class="suggestions-box">
+                <h3 class="suggestions-title"><i class="fas fa-fire" style="color:var(--primary)"></i> À Lire Aussi</h3>
+                <div id="suggested-grid" class="mini-grid">
+                    </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const firebaseConfig = { apiKey: "AIzaSyA8SNo_lyJ0CfkZ9lTRRF7pKajx_VeM8QQ", authDomain: "zuuut-store-maroc.firebaseapp.com", projectId: "zuuut-store-maroc", storageBucket: "zuuut-store-maroc.firebasestorage.app", messagingSenderId: "364412979596", appId: "1:364412979596:web:aa47d8253bfd712ffeeea9" };
+        firebase.initializeApp(firebaseConfig); const db = firebase.firestore();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+
+        if(articleId) loadArticle(articleId); else loadList();
+
+        function loadList() {
+            document.getElementById('list-view').style.display = 'block';
+            document.getElementById('article-view').style.display = 'none';
+            document.title = "Blog High-Tech - Zuuut Store";
+            
+            db.collection('offers').where('type', '==', 'article').orderBy('date', 'desc').onSnapshot(s => {
+                const grid = document.getElementById('posts-grid');
+                grid.innerHTML = '';
+                if (s.empty) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center">Aucun article.</div>'; return; }
+                s.forEach(doc => {
+                    const p = doc.data();
+                    grid.appendChild(createCard(doc.id, p));
+                });
+            });
+        }
+
+        function loadArticle(id) {
+            document.getElementById('list-view').style.display = 'none';
+            document.getElementById('article-view').style.display = 'block';
+            window.scrollTo(0,0);
+            
+            const contentDiv = document.getElementById('article-content');
+            contentDiv.innerHTML = '<div class="loader">Chargement...</div>';
+
+            db.collection('offers').doc(id).get().then(doc => {
+                if(doc.exists) {
+                    const p = doc.data();
+                    document.title = p.title;
+                    contentDiv.innerHTML = `
+                        <img src="${p.img}" style="width:100%; border-radius:20px; max-height:400px; object-fit:cover;">
+                        <h1 style="margin:20px 0;">${p.title}</h1>
+                        <div style="font-size:0.9rem; color:#999; margin-bottom:30px;"><i class="far fa-clock"></i> ${p.date}</div>
+                        <div class="article-body" style="font-size:1.1rem; line-height:1.8;">${p.desc}</div>
+                    `;
+                    // 🔥 CHARGER LES SUGGESTIONS 🔥
+                    loadSuggestions(id);
+                }
+            });
+        }
+
+        // 🔥 FONCTION POUR LES SUGGESTIONS 🔥
+        function loadSuggestions(currentId) {
+            const sugGrid = document.getElementById('suggested-grid');
+            sugGrid.innerHTML = '<p>Chargement...</p>';
+            
+            // On charge 4 articles (au cas où l'un d'eux est l'article actuel)
+            db.collection('offers').where('type', '==', 'article').limit(4).get().then(snapshot => {
+                sugGrid.innerHTML = '';
+                let count = 0;
+                
+                snapshot.forEach(doc => {
+                    // Ne pas afficher l'article qu'on est déjà en train de lire
+                    if(doc.id !== currentId && count < 3) {
+                        const p = doc.data();
+                        const div = document.createElement('div');
+                        div.className = 'mini-card';
+                        div.onclick = () => {
+                            window.history.pushState({}, '', `?id=${doc.id}`);
+                            loadArticle(doc.id); // Reload new article
+                        };
+                        div.innerHTML = `
+                            <img src="${p.img}" class="mini-img">
+                            <h4 class="mini-title">${p.title}</h4>
+                        `;
+                        sugGrid.appendChild(div);
+                        count++;
+                    }
+                });
+            });
+        }
+
+        function createCard(id, p) {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.onclick = () => {
+                window.history.pushState({}, '', `?id=${id}`);
+                loadArticle(id);
+            };
+            div.innerHTML = `
+                <img src="${p.img}" class="card-img" loading="lazy">
+                <div class="card-body">
+                    <span class="date">${p.date}</span>
+                    <h2>${p.title}</h2>
+                    <p style="font-size:0.9rem; color:#666;">Lire la suite...</p>
+                </div>
+            `;
+            return div;
+        }
+
+        function showList(e) {
+            e.preventDefault();
+            window.history.pushState({}, '', 'blog.html');
+            loadList();
+        }
+    </script>
+</body>
+</html>
