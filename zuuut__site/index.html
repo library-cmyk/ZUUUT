@@ -3,347 +3,603 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zuuut Blog - Tech & Fibre Maroc</title>
+    
+    <title>Fibre Optique Maroc - Zuuut Store | Installation Gratuite</title>
+    <meta name="description" content="Offres Fibre Optique Maroc et Produits High-Tech.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ff5e00">
+    <meta property="og:image" content="https://i.imgur.com/Kz8ygFq.png">
+    
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
+    
+    <script>if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }</script>
+    <style>html { scroll-behavior: smooth; overscroll-behavior-y: none; }</style>
+    
+    <script>
+        if(localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "WebSite", "@id": "https://zuuut.store/#website", "url": "https://zuuut.store/", "name": "Zuuut Store", "inLanguage": "fr-MA" },
+        { "@type": "Organization", "@id": "https://zuuut.store/#organization", "name": "Zuuut Store", "logo": "https://i.imgur.com/Kz8ygFq.png" },
+        { "@type": "ItemList", "itemListElement": [
+            { "@type": "SiteNavigationElement", "position": 1, "name": "Fibre", "url": "https://zuuut.store/fibre.html" },
+            { "@type": "SiteNavigationElement", "position": 2, "name": "Blog", "url": "https://zuuut.store/blog.html" }
+          ]
+        }
+      ]
+    }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Rajdhani:wght@600;700;800&family=Poppins:wght@300;400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8017340007827546" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@300;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
     <style>
-        /* --- 1. VARS --- */
-        :root { 
-            --primary: #ff5e00; --dark: #111; --bg: #f8f9fa; --text: #2d3436; 
-            --glass: rgba(255, 255, 255, 0.98); 
-            --glass-mob: rgba(20, 20, 20, 0.98);
-            --border-lux: 1px solid rgba(0,0,0,0.08); 
-        }
-        body.dark-mode { --bg: #0f0f0f; --text: #f5f5f5; --glass: rgba(20, 20, 20, 0.98); --border-lux: 1px solid rgba(255,255,255,0.1); }
-        body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; transition: 0.3s; padding-bottom: 100px; }
-        * { box-sizing: border-box; transition: 0.3s; }
-
-        /* --- 2. HEADER PC (SLIM) --- */
-        .slim-nav-container { position: sticky; top: 15px; z-index: 1000; display: flex; justify-content: center; padding: 0 20px; }
-        .slim-nav {
-            background: var(--glass); backdrop-filter: blur(20px);
-            padding: 8px 20px; border-radius: 50px; display: flex; align-items: center; justify-content: space-between;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1); border: var(--border-lux);
-            width: 100%; max-width: 1000px;
-        }
-        .logo { font-family: 'Share Tech Mono'; color: var(--text); font-size: 1.5rem; font-weight: 900; text-decoration: none; letter-spacing: 1px; }
-        .logo span { color: var(--primary); }
-        .nav-links { display: flex; gap: 10px; }
-        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.85rem; font-weight: 700; padding: 8px 20px; border-radius: 30px; border: 1px solid rgba(128,128,128,0.2); background: rgba(0,0,0,0.02); }
-        .nav-links a:hover { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 0 15px rgba(255, 94, 0, 0.6); transform: translateY(-2px); }
-        .nav-controls { display: flex; gap: 8px; align-items: center; margin-left: 10px; padding-left: 10px; border-left: 1px solid rgba(128,128,128,0.2); }
-        .icon-btn { background: transparent; border: none; color: var(--text); font-size: 1.1rem; cursor: pointer; padding: 5px; }
-        .icon-btn:hover { color: var(--primary); transform: rotate(20deg); text-shadow: 0 0 10px var(--primary); }
-
-        /* --- 3. MOBILE HEADER (LOGO ONLY) --- */
-        .mobile-header { display: none; position: fixed; top: 0; left: 0; width: 100%; background: var(--bg); z-index: 999; padding: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        /* --- VARS --- */
+        :root{--primary:#ff5e00;--text:#2c3e50;--bg-gradient:radial-gradient(circle at top,#ffffff 0%,#f4f7f6 100%);--glass-bg:rgba(255,255,255,0.98);--glass-border:1px solid rgba(255,255,255,0.8);--glass-shadow:0 10px 40px rgba(0,0,0,0.08); --card-bg: #fff;}
         
-        /* --- 4. MOBILE BOTTOM MENU (FULL OPTION) --- */
-        .mobile-nav {
-            display: none; position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: 95%;
-            background: var(--glass-mob); backdrop-filter: blur(20px);
-            border-radius: 50px; padding: 12px 25px; z-index: 5000;
-            justify-content: space-between; align-items: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
-        }
-        .m-link { color: #aaa; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 0.65rem; transition: 0.3s; }
-        .m-link i { font-size: 1.3rem; transition: 0.3s; }
-        .m-link.active, .m-link:hover { color: var(--primary); }
-        .m-link.active i { text-shadow: 0 0 10px var(--primary); transform: translateY(-3px); }
-
-        /* --- 5. SLIDER CENTRÉ 8K --- */
-        .slider-section { margin-top: 40px; padding: 0 20px; max-width: 1300px; margin-left: auto; margin-right: auto; }
-        .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid rgba(128,128,128,0.1); padding-bottom: 10px; }
-        .lux-title { 
-            font-family: 'Share Tech Mono'; font-size: 1.6rem; font-weight: 800; text-transform: uppercase; 
-            background: linear-gradient(90deg, var(--text) 0%, var(--primary) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 94, 0, 0.2);
-        }
-        .lux-icon { color: var(--primary); font-size: 1.3rem; filter: drop-shadow(0 0 5px var(--primary)); }
-
-        .slider-wrapper { display: flex; gap: 20px; overflow-x: auto; padding: 20px 5px; scroll-snap-type: x mandatory; }
-        /* CENTRAGE SUR GRAND ECRAN */
-        @media (min-width: 1000px) { .slider-wrapper { justify-content: center; } }
+        /* DARK MODE STYLE */
+        html.dark-mode body, body.dark-mode { --text:#e0e0e0; --bg-gradient:radial-gradient(circle at top,#1a1a1a 0%,#000000 100%); --glass-bg:rgba(25,25,25,0.98); --glass-border:1px solid rgba(255,94,0,0.15); --card-bg: #111; }
         
-        .slider-wrapper::-webkit-scrollbar { height: 0; }
-        .slide-card { 
-            min-width: 300px; width: 300px; height: 380px; border-radius: 20px; overflow: hidden; position: relative; scroll-snap-align: center; cursor: pointer; 
-            border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
-        }
-        .slide-bg { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; filter: contrast(1.1) saturate(1.2); }
-        .slide-card:hover .slide-bg { transform: scale(1.1); filter: contrast(1.2) saturate(1.3); }
-        .slide-card:hover { border: 2px solid var(--primary); box-shadow: 0 0 30px rgba(255, 94, 0, 0.4); }
-        .slide-info { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, #000, transparent); padding: 25px; color: white; }
+        body.rtl{direction:rtl;font-family:'Cairo',sans-serif;text-align:right}
 
-        /* --- 6. BIG BANNER --- */
-        .big-banner {
-            max-width: 1000px; margin: 40px auto; background: #fff5eb; border: 2px dashed var(--primary);
-            padding: 15px; text-align: center; border-radius: 20px; position: relative;
-        }
-        .ad-tag { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: white; padding: 2px 10px; border: 1px solid var(--primary); border-radius: 10px; font-size: 0.6rem; color: #888; }
-
-        /* --- 7. GRID ARTICLES --- */
-        .main-container { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
-        .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        .post-card {
-            background: var(--glass); border-radius: 20px; overflow: hidden; cursor: pointer; position: relative;
-            border: 2px dashed rgba(128,128,128,0.15); height: 100%; display: flex; flex-direction: column;
-        }
-        .post-card:hover { border-color: var(--primary); border-style: solid; transform: translateY(-5px); box-shadow: 0 0 30px rgba(255, 94, 0, 0.2); }
-        .post-img { width: 100%; height: 200px; object-fit: cover; }
-        .post-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .post-title { font-size: 1.1rem; margin: 10px 0; font-weight: 800; line-height: 1.4; }
-        .post-desc { font-size: 0.85rem; opacity: 0.7; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-        .read-more { margin-top: auto; font-size: 0.8rem; font-weight: 900; color: var(--primary); text-transform: uppercase; }
-
-        /* --- 8. DETAIL VIEW (STICKY ADS FIXED) --- */
-        #detail-view { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 2000; overflow-y: auto; padding-bottom: 100px; }
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;transition:all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)}
+        body{background:var(--bg-gradient);background-attachment:fixed;color:var(--text);min-height:100vh;overflow-x:hidden; padding-bottom: 110px;}
+        .container{max-width:1250px;margin:0 auto;padding:0 15px} 
         
-        .detail-layout { display: flex; max-width: 1300px; margin: 30px auto; gap: 30px; padding: 0 20px; align-items: flex-start; }
+        /* --- HEADER FIXED --- */
+        header{padding:15px 0;position:sticky;top:0;z-index:2000}
         
-        .side-ad { 
-            width: 200px; min-width: 200px; height: 600px; position: sticky; top: 100px;
-            background: #fff; border: 1px dashed #ccc; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; z-index: 10;
+        .capsule-nav {
+            background: var(--glass-bg); backdrop-filter: blur(25px);
+            border: var(--glass-border); border-radius: 50px; 
+            padding: 8px 15px; 
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+            max-width: 1250px; margin: 0 auto; position: relative;
+            gap: 15px;
         }
-        body.dark-mode .side-ad { background: #1a1a1a; border-color: #333; }
-
-        .detail-center { flex-grow: 1; background: var(--glass); border-radius: 25px; padding: 40px; box-shadow: 0 10px 50px rgba(0,0,0,0.05); }
         
-        /* BOUTON X (FIXED & ALWAYS VISIBLE) */
-        .close-btn-fixed { 
-            position: fixed; top: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; 
-            background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; font-size: 1.5rem; z-index: 6000; /* SUPER HIGH Z-INDEX */
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3); border: 2px solid white; transition: 0.3s;
+        .logo { font-size:1.6rem; font-weight:900; color:var(--text); letter-spacing:1px; cursor:pointer; text-transform:uppercase; flex-shrink: 0; margin-right: 10px; }
+        .logo span{color:var(--primary)}
+        
+        /* NAV LINKS */
+        .nav-links { display:flex; gap:5px; align-items:center; flex-grow: 1; justify-content: center; flex-wrap: nowrap; }
+        
+        .nav-links a {
+            text-decoration: none; white-space: nowrap; 
+            background:transparent; border:none; 
+            padding: 8px 12px; 
+            border-radius:50px; cursor:pointer; color:var(--text); 
+            font-weight:700; font-size:0.8rem; 
+            display:flex; align-items:center; gap:6px; transition:0.3s;
         }
-        .close-btn-fixed:hover { transform: rotate(90deg) scale(1.1); }
+        
+        .nav-controls-pc { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+        .nav-controls-pc button { background:transparent; border:none; padding:8px 12px; border-radius:50px; cursor:pointer; color:var(--text); font-size:1rem; display:flex; align-items:center; transition:0.3s; }
 
-        .detail-content img { max-width: 100%; border-radius: 20px; margin: 25px 0; }
-        .comments-box { margin-top: 50px; border-top: 1px solid rgba(128,128,128,0.2); padding-top: 30px; }
-        .comment-item { background: rgba(0,0,0,0.03); padding: 15px; border-radius: 10px; margin-bottom: 15px; display: flex; gap: 15px; }
-        .c-avatar { width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        .nav-links a i, .nav-controls-pc button i { color: var(--primary); font-size: 1rem; }
+        .nav-links a:hover, .nav-links a.active, .nav-controls-pc button:hover { background: rgba(255, 94, 0, 0.15); color: var(--primary); box-shadow: inset 0 0 10px rgba(255, 94, 0, 0.1); border: 1px solid rgba(255, 94, 0, 0.3); }
+        
+        /* LANG MENU */
+        #lang-menu{background:var(--glass-bg); color:var(--text); border:var(--glass-border); position:absolute; top:60px; right:20px; padding:10px; border-radius:15px; display:none; box-shadow:0 10px 30px rgba(0,0,0,0.2); width:180px; z-index:2001;}
+        #lang-menu div{padding:10px; cursor:pointer; border-radius:8px; font-weight:600; display:flex; align-items:center; gap:10px;} 
+        #lang-menu div:hover{background:rgba(255,94,0,0.1);color:var(--primary)}
+        .flag-icon { width: 24px; height: auto; border-radius: 4px; }
 
-        /* --- 9. FOOTER V11 (CENTERED) --- */
-        .lux-footer { background: #111; color: white; padding: 60px 30px 120px 30px; margin-top: 80px; border-radius: 40px 40px 0 0; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto; text-align: center; } /* TEXT ALIGN CENTER ADDED */
-        .footer-col h4 { color: white; font-size: 1.2rem; margin-bottom: 20px; font-family: 'Share Tech Mono'; letter-spacing: 1px; }
-        .footer-col p { color: #888; line-height: 1.6; font-size: 0.9rem; }
-        .footer-links a { display: block; color: #888; text-decoration: none; margin-bottom: 10px; transition: 0.2s; font-size: 0.9rem; }
-        .footer-links a:hover { color: var(--primary); }
-        .newsletter-box { display: flex; background: #222; border-radius: 30px; padding: 5px; margin-top: 10px; justify-content: center; }
-        .newsletter-box input { background: none; border: none; color: white; padding: 10px; width: 100%; outline: none; text-align: left; }
-        .newsletter-box button { background: var(--primary); border: none; color: white; border-radius: 30px; padding: 10px 20px; font-weight: bold; cursor: pointer; }
-        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #222; color: #555; font-size: 0.8rem; width: 100%; }
+        /* MOBILE CONTROLS */
+        .mobile-controls { display: none; align-items: center; gap: 15px; } 
+        .menu-toggle, .mobile-theme-btn, .lang-mobile-btn { font-size: 1.4rem; color: var(--text); cursor: pointer; background:none; border:none;}
 
-        /* BOUTON SAHEM (VISIBLE SUR ARTICLES) */
-        #back-to-top { 
-            position: fixed; bottom: 80px; right: 20px; 
-            background: var(--primary); color: white; width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; 
-            display: none; z-index: 5500; /* SUPER HIGH */
-            align-items: center; justify-content: center; font-size: 1.2rem; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: 0.3s;
-        }
-        #back-to-top:hover { transform: translateY(-5px); }
+        /* HERO & UI */
+        .hero-wrapper { position: relative; border-radius: 40px; padding: 4px; background: rgba(0,0,0,0.05); margin: 30px 0; z-index: 1; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.15); }
+        .hero-wrapper::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(#d90429, #008000, #d90429, #008000); animation: rotate 8s linear infinite; z-index: -1; filter:blur(10px); }
+        .hero-fibre { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-radius: 36px; padding: 40px 20px; text-align: center; color: #2c3e50; position: relative; z-index: 2; }
+        body.dark-mode .hero-fibre { background: rgba(18, 18, 18, 0.96); color: #fff; }
+        
+        .badge-maroc { background: linear-gradient(90deg, #d90429, #008000); color: #fff; padding: 8px 25px; border-radius: 50px; display: inline-block; font-weight: 800; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 2px; }
+        .mega-title { font-family: 'Share Tech Mono', monospace; font-size: clamp(3rem, 10vw, 5rem); font-weight: 900; line-height: 1; background: linear-gradient(45deg, var(--text) 30%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 10px 0; }
+        .sub-title { font-size: clamp(1rem, 3vw, 1.4rem); font-weight:700; opacity:0.8; letter-spacing:5px; margin-bottom:40px; text-transform:uppercase; font-family:'Poppins',sans-serif; }
+        
+        .features-list { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto 20px auto; width: 100%; }
+        .feat-item { position: relative; width: 100%; padding: 3px; border-radius: 15px; overflow: hidden; background: transparent; transform: translateZ(0); }
+        .feat-item::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(#d90429, #008000, #d90429, #008000, #d90429); animation: rotate 4s linear infinite; z-index: 0; }
+        .feat-inner { position: relative; z-index: 1; background: var(--glass-bg); width: 100%; min-height: 70px; border-radius: 12px; display: grid; grid-template-columns: 50px 1fr; align-items: center; padding: 10px 20px; color: var(--text); }
+        .feat-inner i { font-size: 1.8rem; color: var(--primary); display: flex; justify-content: center; align-items: center; }
+        .feat-text-group { display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; }
+        .feat-title { font-family: 'Share Tech Mono', monospace; text-transform: uppercase; font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; }
+        .feat-sub { font-size: 0.9rem; opacity: 0.7; font-weight: 600; white-space: nowrap; }
+        body.dark-mode .feat-inner { background: #1a1a1a; }
 
-        .loader { text-align: center; padding: 50px; color: #888; }
+        .price-hero-wrapper { position: relative; display: inline-block; padding: 2px; border-radius: 18px; margin: 10px 0; overflow: hidden; }
+        .price-hero-wrapper::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #d90429, #008000, #d90429, #008000); background-size: 200% 100%; animation: borderRun 3s linear infinite; }
+        @keyframes borderRun { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+        .price-hero { position: relative; z-index: 2; background: var(--glass-bg); border-radius: 16px; padding: 5px 30px; font-family: 'Share Tech Mono', monospace; font-size: 2rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 10px; }
+        
+        .btn-hero-wrapper { position: relative; border-radius: 50px; padding: 4px; margin: 15px auto 0; max-width: 300px; cursor: pointer; overflow: hidden; transition: 0.3s; z-index: 5; }
+        .btn-hero-wrapper::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(#4285F4, #EA4335, #FBBC05, #34A853, #4285F4); animation: rotate 3s linear infinite; }
+        .btn-hero { position: relative; z-index: 2; background: #fff; color: var(--primary); width: 100%; border: none; padding: 12px; border-radius: 46px; font-weight: 900; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 10px; letter-spacing:1px; }
+        .btn-hero-wrapper:hover { transform: scale(1.02); }
 
-        @media (max-width: 1100px) { .side-ad { display: none; } }
-        @media (max-width: 768px) {
-            .slim-nav-container { display: none; } /* CACHER HEADER PC */
-            .mobile-header { display: block; } /* AFFICHER LOGO MOBILE */
-            .mobile-nav { display: flex; } /* AFFICHER MENU BAS */
+        .section-divider { display: flex; align-items: center; justify-content: center; margin: 50px 0 30px; }
+        .divider-line { height: 2px; flex-grow: 1; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
+        .divider-text { font-size: 2rem; font-weight: 900; color: var(--text); padding: 0 30px; text-transform: uppercase; letter-spacing: 3px; }
+
+        .grid-container{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:30px; margin-bottom:80px; width: 100%; }
+        @media (min-width: 1024px) { .grid-container { grid-template-columns: repeat(3, 1fr) !important; } }
+        
+        .card-wrapper { position: relative; border-radius: 30px; padding: 4px; background: rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.3s; z-index: 1; overflow: hidden; }
+        .ad-wrapper::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(#d90429, #008000, #d90429, #008000); animation: rotate 4s linear infinite; z-index: -1; }
+        .ad-content { background: var(--glass-bg); padding: 10px; height: 100%; border-radius: 27px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 2; overflow: hidden; }
+        .ad-label { position: absolute; top: 10px; right: 15px; background: rgba(0,0,0,0.1); color: var(--text); font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; z-index: 10; font-weight: bold; border: 1px solid rgba(0,0,0,0.1); }
+        
+        .card-wrapper::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(#EA4335, #FBBC05, #34A853, #4285F4, #EA4335, #FBBC05, #34A853, #4285F4); animation: rotate 4s linear infinite; z-index: -1; }
+        .card-wrapper::after { content: ""; position: absolute; inset: 4px; background: var(--glass-bg); border-radius: 26px; z-index: -1; }
+        .card-content { border-radius: 27px; padding: 20px; height: 100%; position: relative; z-index: 2; display: flex; flex-direction: column; }
+        .card-wrapper:hover { transform: translateY(-10px); }
+        .card-wrapper:hover::before { background: var(--card-color); box-shadow: 0 0 20px var(--card-color); animation: none; }
+        .card-wrapper:hover h3 { color: var(--card-color); }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        .card-content img{width:100%;height:220px;border-radius:20px;object-fit:cover;margin-bottom:15px}
+        .card-content h3{margin-bottom:10px; font-weight:800; color:var(--text); transition:0.3s; font-size:1.4rem; letter-spacing: -0.5px;}
+        .desc-preview { font-size: 0.95rem; color: var(--text); opacity: 0.8; margin-bottom: 25px; flex-grow: 1; line-height: 1.6; transition: 0.3s; font-weight: 400; }
+        .card-actions { margin-top: auto; display: flex; flex-direction: column; gap: 15px; width: 100%; }
+        .price-inner { font-family: 'Share Tech Mono', monospace; font-size: 1.6rem; font-weight: 900; text-align: center; padding: 10px; border-radius: 15px; border: 2px solid var(--card-color); color: var(--card-color); }
+        .cmd-btn { background: var(--card-color); color: white; padding: 12px; width: 100%; text-align: center; border-radius: 50px; font-weight: 800; border: none; cursor: pointer; text-transform: uppercase; }
+
+        .sticky-ad-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--glass-bg); backdrop-filter: blur(10px); border-top: 1px solid rgba(128,128,128,0.2); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 10px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); animation: slideUpAd 1s ease-out; }
+        @keyframes slideUpAd { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .close-ad { position: absolute; top: -15px; right: 10px; background: var(--primary); color: white; border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; border: 2px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+
+        #view-detail, #view-reviews {display:none;animation:fadeIn 0.2s}
+        .detail-container{background:var(--glass-bg);backdrop-filter:blur(30px);padding:40px;border-radius:40px;margin-top:20px;border:1px solid var(--primary);text-align:center;box-shadow:var(--glass-shadow)}
+        .detail-img { width:100%; height:auto; max-height:500px; object-fit:cover; margin:30px 0; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.1); min-height: 300px; background: rgba(0,0,0,0.05); }
+        .detail-desc { font-size: 1.05rem; opacity: 0.9; margin: 20px auto; max-width: 900px; line-height: 1.8; text-align: left; overflow-wrap: break-word; color: var(--text); padding: 0 10px; }
+        .detail-desc img { max-width: 100%; height: auto !important; border-radius: 10px; display: block; margin: 15px auto; object-fit: contain; }
+        .detail-desc table { width: 100% !important; border-collapse: separate; border-spacing: 0; margin: 25px 0; background: rgba(255, 255, 255, 0.05); border-radius: 15px; overflow: hidden; border: 1px solid rgba(128,128,128,0.1); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .detail-desc th, .detail-desc td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(128,128,128,0.1); vertical-align: middle; }
+        .detail-desc th { background: rgba(255, 94, 0, 0.08); color: var(--primary); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .detail-desc tr:last-child td { border-bottom: none; }
+
+        .in-article-ad { margin: 30px 0; border: 1px dashed rgba(128,128,128,0.3); padding: 10px; border-radius: 10px; background: rgba(0,0,0,0.02); text-align: center; }
+        
+        .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:3000;justify-content:center;align-items:center;backdrop-filter:blur(8px)}
+        .modal-overlay.active{display:flex;animation:fadeIn 0.3s}
+        .modal-box{background:var(--glass-bg);padding:40px;border-radius:30px;width:90%;max-width:450px;position:relative;border:1px solid var(--primary);box-shadow:0 0 50px rgba(255,94,0,.2)}
+        .close-modal{position:absolute;top:20px;right:20px;font-size:1.5rem;cursor:pointer;color:var(--text)}
+        
+        input,textarea, select{width:100%;padding:15px;margin-bottom:15px;border-radius:15px;border:1px solid #ddd;outline:0;display:block;background:rgba(255,255,255,.8);color:#333}
+        body.dark-mode input,body.dark-mode textarea, body.dark-mode select{background:#222;border-color:#444;color:#fff}
+        input:focus{border-color:var(--primary)}
+        
+        footer{text-align:center;padding:40px;margin-top:50px;opacity:.7;border-top:1px solid rgba(0,0,0,0.1)}
+        .glass-form{background:var(--glass-bg);padding:40px;border-radius:30px;max-width:600px;margin:40px auto;border:var(--glass-border);box-shadow:var(--glass-shadow)}
+        #news-popup{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);width:90%;max-width:500px;background:var(--glass-bg);backdrop-filter:blur(20px);border:2px solid var(--primary);border-radius:20px;padding:30px;box-shadow:0 20px 50px rgba(0,0,0,0.4);z-index:3000;animation:slideUp 0.5s;text-align:center}
+        .fab-whatsapp{position:fixed;bottom:120px;right:25px;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:9999;cursor:pointer;transition:0.3s;text-decoration:none}
+        .btn-glow{background:linear-gradient(90deg,#ff5e00,#ff8800);color:#fff;padding:15px 40px;border-radius:50px;font-weight:800;border:none;cursor:pointer}
+        
+        @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+        @keyframes slideUp{from{bottom:-200px;opacity:0}to{bottom:20px;opacity:1}}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        
+        @media (max-width:900px){
+            .capsule-nav{padding:8px 15px; gap: 15px;}
+            .mobile-controls { display: flex; order: 3; align-items: center; gap: 15px; }
+            .menu-toggle, .lang-mobile-btn, .mobile-theme-btn { display:block; font-size:1.4rem; color:var(--text); cursor:pointer; }
+            .lang-mobile-btn { order: 1; }
+            .logo { order: 2; margin: 0; font-size: 1.5rem; flex-shrink: 0; }
             
-            .slider-section { margin-top: 70px; } /* ESPACE POUR LOGO */
-            .slide-card { min-width: 85vw; height: 350px; }
-            .detail-center { padding: 20px; padding-top: 60px; }
-            .lux-footer { padding-bottom: 120px; }
+            .nav-links{
+                display:none; flex-direction:column;
+                width:100%; margin-top:20px; order:4;
+            }
+            .nav-links.active{display:flex}
+            .nav-links a, .nav-links button{width:100%; justify-content:flex-start; padding: 12px 18px; font-size: 1rem;}
+            .nav-controls-pc { display: none; }
+            
+            #lang-menu { position: fixed; top: 80px; left: 20px; right: auto; width: 200px; }
+            
+            .mega-title{font-size:3rem; margin-bottom: 5px;}
+            .sub-title { font-size: 1rem; letter-spacing: 2px; }
+            .hero-fibre { padding: 30px 15px; }
+
+            .section-divider{flex-direction:column;gap:10px}.divider-line{width:100px;height:2px}
+            .divider-text { font-size: 1.8rem; }
+
+            .grid-container { gap: 25px; padding: 0 10px; }
+            .card-wrapper, .ad-wrapper { max-width: 400px; margin: 0 auto; width: 100%; }
+            
+            .detail-container { padding: 25px; }
+            #detail-title { font-size: 2rem !important; line-height: 1.2; }
+            .feat-inner { grid-template-columns: 40px 1fr; padding: 10px 15px; }
         }
     </style>
 </head>
 <body>
+    <a href="https://wa.me/212690565433" class="fab-whatsapp" target="_blank" aria-label="Contact WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
-    <div class="mobile-header">
-        <a href="index.html" class="logo">ZUUUT<span>.</span></a>
+    <div id="news-popup">
+        <div style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:1.2rem; color:var(--text);" onclick="closeNews()" aria-label="Fermer Popup">✕</div>
+        <i class="fas fa-envelope-open-text" style="font-size:2.5rem; color:var(--primary); margin-bottom:15px;"></i>
+        <h3 style="margin-bottom:10px; color:var(--text);" data-i18n="news_title">Offres Exclusives</h3>
+        <p style="font-size:0.9rem; opacity:0.8; margin-bottom:15px; color:var(--text);" data-i18n="news_desc">Recevez les meilleures offres.</p>
+        <form onsubmit="subNews(event)">
+            <input type="email" id="n-email" placeholder="Votre Email" data-i18n="ph_email" required style="text-align:center;" aria-label="Email">
+            <button class="btn-glow" style="width:100%; margin-top:0; justify-content:center;" data-i18n="sub_btn">S'abonner</button>
+        </form>
     </div>
 
-    <div class="slim-nav-container">
-        <nav class="slim-nav">
-            <a href="index.html" class="logo">ZUUUT<span>.</span></a>
-            <div class="nav-links">
-                <a href="#hero-slider">À la Une</a>
-                <a href="#grid-posts">Articles</a>
-                <a href="#footer">À Propos</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <div class="nav-controls">
-                <button class="icon-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-                <a href="index.html" style="color:var(--primary); font-size:1.3rem;"><i class="fas fa-store"></i></a>
-            </div>
-        </nav>
+    <div id="sticky-ad" class="sticky-ad-footer" style="display:none;">
+        <div class="close-ad" onclick="document.getElementById('sticky-ad').style.display='none'" aria-label="Fermer Publicité">✕</div>
+        <div style="font-size:0.8rem; color:#aaa; position:absolute; top:-15px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.7); padding:2px 5px; border-radius:3px; color:white;" data-i18n="ad_label">Publicité</div>
+        <ins class="adsbygoogle" style="display:block; width:100%; height:90px; text-align:center;" data-ad-client="ca-pub-8017340007827546" data-ad-slot="2461881846" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
     </div>
 
-    <div class="mobile-nav">
-        <a href="index.html" class="m-link"><i class="fas fa-home"></i> Accueil</a>
-        <a href="#grid-posts" class="m-link active"><i class="fas fa-newspaper"></i> Blog</a>
-        <a href="index.html" class="m-link"><i class="fas fa-store"></i> Store</a>
-        <a onclick="toggleTheme()" class="m-link" style="cursor:pointer"><i class="fas fa-moon"></i> Dark</a>
-        <a href="contact.html" class="m-link"><i class="fas fa-envelope"></i> Contact</a>
-    </div>
-
-    <div id="hero-slider" class="slider-section">
-        <div class="section-header"><i class="fas fa-fire lux-icon"></i> <h2 class="lux-title">À la Une</h2></div>
-        <div id="slider-content" class="slider-wrapper"><div class="loader">Chargement...</div></div>
-    </div>
-
-    <div class="main-container" style="text-align:center;">
-        <div class="big-banner">
-            <span class="ad-tag">SPONSORISÉ</span>
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8017340007827546" data-ad-slot="XXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <div id="notif-toast" style="position:fixed; top:110px; right:20px; background:var(--glass-bg); backdrop-filter:blur(10px); padding:15px 25px; border-radius:15px; border-left:5px solid var(--primary); transform:translateX(200%); transition:0.5s; z-index:2000; display:flex; gap:15px; align-items:center; box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+        <i class="fas fa-fire" style="color:var(--primary); font-size:1.5rem;"></i>
+        <div>
+            <div style="font-size:0.8rem; opacity:0.7;" data-i18n="flash_promo">PROMO FLASH</div>
+            <span data-i18n="notif_text" style="font-weight:bold; color:var(--text);">Installation Gratuite !</span>
         </div>
     </div>
 
-    <div class="main-container">
-        <div class="section-header"><i class="fas fa-newspaper lux-icon"></i> <h2 class="lux-title">Derniers Articles</h2></div>
-        <div id="grid-posts" class="articles-grid"></div>
-    </div>
-
-    <footer id="footer" class="lux-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>ZUUUT STORE</h4>
-                <p>Spécialiste Fibre Optique & Gaming au Maroc. Installation rapide et support 24/7.</p>
-                <div style="margin-top:20px; font-size:1.5rem; color:#888; justify-content:center; display:flex; gap:15px;">
-                    <i class="fab fa-whatsapp" style="cursor:pointer"></i> <i class="fab fa-instagram" style="cursor:pointer"></i>
+    <header>
+        <div class="container">
+            <div class="capsule-nav">
+                <button class="lang-mobile-btn" onclick="toggleLangMenu()" aria-label="Langue"><i class="fas fa-globe"></i></button>
+                <div class="logo" onclick="router('all')">ZUUUT<span>.</span></div>
+                
+                <div class="mobile-controls">
+                    <button class="mobile-theme-btn" onclick="toggleTheme()" aria-label="Mode Sombre"><i class="fas fa-moon"></i></button>
+                    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
                 </div>
-            </div>
-            <div class="footer-col footer-links">
-                <h4>NAVIGATION</h4>
-                <a href="index.html">Boutique</a>
-                <a href="index.html#fibre">Fibre</a>
-                <a href="contact.html">Contact</a>
-                <a href="privacy.html">Confidentialité</a>
-            </div>
-            <div class="footer-col">
-                <h4>NEWSLETTER</h4>
-                <p>Recevez les codes promos.</p>
-                <div class="newsletter-box">
-                    <input type="email" placeholder="Email...">
-                    <button>GO</button>
+
+                <div class="nav-links" id="nav-menu">
+                    <a href="#" onclick="event.preventDefault(); router('all')" class="active" id="btn-all" data-i18n="home"><i class="fas fa-home"></i> Accueil</a>
+                    <a href="#fibre" onclick="event.preventDefault(); router('fibre')" id="btn-fibre" data-i18n="fibre"><i class="fas fa-wifi"></i> Fibre</a>
+                    <a href="#produit" onclick="event.preventDefault(); router('produit')" id="btn-produit" data-i18n="produit"><i class="fas fa-box-open"></i> Produits</a>
+                    <a href="#forfait" onclick="event.preventDefault(); router('forfait')" id="btn-forfait" data-i18n="forfait"><i class="fas fa-mobile-alt"></i> Forfaits</a>
+                    <a href="#promo" onclick="event.preventDefault(); router('promo')" id="btn-promo" data-i18n="promo"><i class="fas fa-percentage"></i> Promos</a>
+                    
+                    <a href="blog.html" style="color:var(--primary); font-weight:bold;"><i class="fas fa-newspaper"></i> Blog</a>
+
+                    <a href="#reviews" onclick="event.preventDefault(); router('reviews')" id="btn-reviews" data-i18n="reviews"><i class="fas fa-star"></i> Avis</a>
+                    <a href="#contact" onclick="event.preventDefault(); router('contact')" id="btn-contact" data-i18n="contact"><i class="fas fa-envelope"></i> Contact</a>
+                </div>
+                
+                <div class="nav-controls-pc">
+                     <button onclick="toggleTheme()" aria-label="Mode Sombre PC"><i class="fas fa-moon"></i></button>
+                     <div style="position:relative"><button onclick="toggleLangMenu()" aria-label="Langue PC"><i class="fas fa-globe"></i></button></div>
+                </div>
+                
+                <div id="lang-menu">
+                    <div onclick="changeLang('fr')"><img src="https://flagcdn.com/w40/fr.png" class="flag-icon"> Français</div>
+                    <div onclick="changeLang('ar')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> العربية</div>
+                    <div onclick="changeLang('dr_la')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> Darija (Lat)</div>
+                    <div onclick="changeLang('dr_ar')"><img src="https://flagcdn.com/w40/ma.png" class="flag-icon"> الدارجة</div>
+                    <div onclick="changeLang('en')"><img src="https://flagcdn.com/w40/us.png" class="flag-icon"> English</div>
+                    <div onclick="changeLang('es')"><img src="https://flagcdn.com/w40/es.png" class="flag-icon"> Español</div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">&copy; 2025 Zuuut Store. All Rights Reserved.</div>
+    </header>
+
+    <main class="container">
+        <div id="view-offers">
+            <div class="hero-wrapper">
+                <div class="hero-fibre">
+                    <div class="hero-inner">
+                        <span class="badge-maroc"><i class="fas fa-star"></i> <span id="hero-tagline" data-i18n="hero_badge">EXCLUSIVITÉ MAROC</span></span>
+                        <div id="hero-number" class="mega-title">1000</div>
+                        <div id="hero-unit" class="sub-title" data-i18n="hero_sub">MEGA / SECONDE</div>
+                        <div class="features-list">
+                            <div class="feat-item" id="hero-feat1"><div class="feat-inner"><i class="fas fa-gamepad"></i><div class="feat-text-group"><span class="feat-title" id="hero-feat1-txt">Gaming</span><span class="feat-sub" id="hero-feat1-sub">0ms</span></div></div></div>
+                            <div class="feat-item" id="hero-feat2"><div class="feat-inner"><i class="fas fa-film"></i><div class="feat-text-group"><span class="feat-title" id="hero-feat2-txt">8K UHD</span><span class="feat-sub" id="hero-feat2-sub">Zéro Lag</span></div></div></div>
+                            <div class="feat-item" id="hero-feat3"><div class="feat-inner"><i class="fas fa-bolt"></i><div class="feat-text-group"><span class="feat-title" id="hero-feat3-txt">Speed</span><span class="feat-sub" id="hero-feat3-sub">Max</span></div></div></div>
+                            <div class="feat-item" id="hero-feat4"><div class="feat-inner"><i class="fas fa-wifi"></i><div class="feat-text-group"><span class="feat-title" id="hero-feat4-txt">Wifi 6</span><span class="feat-sub" id="hero-feat4-sub">Pro</span></div></div></div>
+                            <div class="feat-item" id="hero-feat5"><div class="feat-inner"><i class="fas fa-check-circle"></i><div class="feat-text-group"><span class="feat-title" id="hero-feat5-txt">Install</span><span class="feat-sub" id="hero-feat5-sub">Gratuite</span></div></div></div>
+                        </div>
+                        <div class="price-hero-wrapper" id="hero-price"><div class="price-hero"><i class="fas fa-tag"></i> <span id="hero-price-txt">949,00 Dhs</span></div></div>
+                        <div class="btn-hero-wrapper" onclick="openModal({title:'Fibre 1000 Mega', price:949})" id="hero-btn"><button class="btn-hero" aria-label="Commander"><i class="fas fa-rocket"></i> <span data-i18n="cmd_now" id="hero-btn-txt">COMMANDER MAINTENANT</span></button></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider">
+                <span class="divider-line"></span><h2 class="divider-text" data-i18n="welcome_title">NOS OFFRES</h2><span class="divider-line"></span>
+            </div>
+
+            <div id="offers-grid" class="grid-container"></div>
+
+            <div class="section-divider" id="blog-section-title" style="display:none; margin-top:60px;">
+                <span class="divider-line"></span><h2 class="divider-text">BLOG & ACTUALITÉS</h2><span class="divider-line"></span>
+            </div>
+            <div id="home-blog-grid" class="grid-container"></div>
+        </div>
+
+        <div id="view-detail">
+            <div class="detail-container">
+                <h1 id="detail-title" style="color:var(--primary); font-size:3rem; margin-bottom:10px;"></h1>
+                <div id="detail-price" style="font-size:2.5rem; font-weight:900; color:var(--text); font-family:'Share Tech Mono', monospace;"></div>
+                <div class="in-article-ad"><span style="font-size:0.7rem; color:#aaa;" data-i18n="ad_label">Publicité</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8017340007827546" data-ad-slot="6829992954"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+                <img id="detail-img" class="detail-img" src="" alt="Produit Image" loading="lazy">
+                <div id="detail-desc" class="detail-desc"></div>
+                <div class="in-article-ad"><span style="font-size:0.7rem; color:#aaa;" data-i18n="ad_label">Publicité</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8017340007827546" data-ad-slot="6829992954"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+                <div style="margin-top:30px; display:flex; gap:15px; justify-content:center;">
+                    <button onclick="closeDetail()" style="background:rgba(0,0,0,0.1); color:var(--text); padding:15px 30px; border-radius:50px; border:none; font-weight:bold; cursor:pointer;" data-i18n="back">Retour</button>
+                    <button onclick="buyCurrent()" class="btn-glow" style="margin:0;" data-i18n="cmd_now">Commander</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-reviews">
+            <div class="glass-form" style="max-width:800px; margin-top:50px;">
+                <h2 style="color:var(--primary); text-align:center; margin-bottom:30px;" data-i18n="reviews_title">Avis Clients</h2>
+                <div id="reviews-list" class="review-grid"></div>
+                <div class="section-divider" style="margin: 30px 0;"><span class="divider-line"></span><h3 data-i18n="add_review">Ajouter un avis</h3><span class="divider-line"></span></div>
+                <form onsubmit="addReview(event, 'global')">
+                    <input type="text" id="r-name" placeholder="Votre Nom" data-i18n="ph_name" required aria-label="Nom">
+                    <select id="r-stars" aria-label="Note"><option value="5">⭐⭐⭐⭐⭐ (5/5)</option><option value="4">⭐⭐⭐⭐ (4/5)</option><option value="3">⭐⭐⭐ (3/5)</option></select>
+                    <textarea id="r-msg" rows="3" placeholder="Votre avis..." data-i18n="ph_msg" required aria-label="Message"></textarea>
+                    <button type="submit" class="btn-glow" style="margin:0;" data-i18n="send">Publier</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="view-contact" style="display:none;">
+            <div class="glass-form" style="margin-top:50px;">
+                <h2 style="color:var(--primary); text-align:center; margin-bottom:20px;" data-i18n="contact_title">Contactez Abzou</h2>
+                <button onclick="window.open('https://wa.me/212690565433','_blank')" style="background:#25D366; color:white; width:100%; padding:15px; border-radius:50px; border:none; font-weight:bold; margin-bottom:20px; cursor:pointer; font-size:1.1rem;"><i class="fab fa-whatsapp"></i> WhatsApp Direct</button>
+                <form onsubmit="sendMessage(event)">
+                    <input type="text" id="c-name" placeholder="Nom Complet" data-i18n="ph_name" required aria-label="Nom">
+                    <input type="tel" id="c-phone" placeholder="Numéro de Téléphone" data-i18n="ph_phone" required aria-label="Téléphone">
+                    <textarea id="c-msg" rows="4" placeholder="Votre Message..." data-i18n="ph_msg" required aria-label="Message"></textarea>
+                    <button type="submit" class="btn-glow" style="margin:0;" data-i18n="send">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="close-modal" onclick="closeModal()" aria-label="Fermer">✕</div>
+            <h2 id="m-title" style="color:var(--primary); margin-bottom:5px;">Produit</h2>
+            <h3 id="m-price" style="margin-bottom:20px; font-weight:bold; color:var(--text);">0 DH</h3>
+            <p style="margin-bottom:15px; opacity:0.8; color:var(--text);" data-i18n="modal_text">Remplissez pour commander :</p>
+            <input type="text" id="m-name" placeholder="Votre Nom" data-i18n="ph_name" aria-label="Nom Commande">
+            <input type="tel" id="m-phone" placeholder="Votre Téléphone" data-i18n="ph_phone" aria-label="Téléphone Commande">
+            <button onclick="submitOrder()" class="btn-glow" style="width:100%; margin-bottom:10px;" data-i18n="confirm">Confirmer</button>
+            <button onclick="orderWhatsApp()" style="background:#25D366; color:white; width:100%; padding:12px; border-radius:50px; border:none; font-weight:bold; cursor:pointer; font-size:1rem; box-shadow:0 5px 15px rgba(37, 211, 102, 0.4);"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Zuuut Store. <span data-i18n="rights">Tous droits réservés.</span></p>
+        <div style="margin-top:15px; font-size:0.9rem;">
+            <a href="privacy.html" style="color:var(--text); opacity:0.7; margin:0 10px;">Politique de Confidentialité</a> |
+            <a href="blog.html" style="color:var(--text); opacity:0.7; margin:0 10px;">Blog & Actualités</a>
+        </div>
     </footer>
 
-    <button id="back-to-top" onclick="window.scrollTo(0,0)"><i class="fas fa-arrow-up"></i></button>
-
-    <div id="detail-view">
-        <div class="close-btn-fixed" onclick="closeArticle()">✕</div>
-        
-        <div class="detail-layout">
-            <div class="side-ad"><span style="position:absolute;top:-10px;background:#ddd;padding:2px 5px;font-size:0.6rem;border-radius:5px">PUB</span><ins class="adsbygoogle" style="display:block;width:100%;height:100%" data-ad-client="ca-pub-8017340007827546" data-ad-slot="XXXXXXX" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-            
-            <div class="detail-center">
-                <div id="article-content"></div>
-                <div class="comments-box">
-                    <h3><i class="fas fa-comments"></i> Avis Communauté</h3>
-                    <div style="display:flex;gap:10px;margin-bottom:20px;">
-                        <input type="text" id="c-name" placeholder="Nom..." style="padding:12px;border:1px solid #ddd;border-radius:10px;width:30%;background:rgba(0,0,0,0.02)">
-                        <input type="text" id="c-msg" placeholder="Votre avis..." style="padding:12px;border:1px solid #ddd;border-radius:10px;width:70%;background:rgba(0,0,0,0.02)">
-                        <button onclick="addComment()" style="background:var(--primary);color:white;border:none;border-radius:10px;padding:0 25px;cursor:pointer"><i class="fas fa-paper-plane"></i></button>
-                    </div>
-                    <div id="comments-list"></div>
-                </div>
-                <div style="margin-top:50px">
-                    <h3 style="border-bottom:1px solid #eee;padding-bottom:10px;margin-bottom:20px">À lire aussi</h3>
-                    <div id="suggestions-grid" class="articles-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));"></div>
-                </div>
-            </div>
-
-            <div class="side-ad"><span style="position:absolute;top:-10px;background:#ddd;padding:2px 5px;font-size:0.6rem;border-radius:5px">PUB</span><ins class="adsbygoogle" style="display:block;width:100%;height:100%" data-ad-client="ca-pub-8017340007827546" data-ad-slot="XXXXXXX" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-        </div>
-    </div>
-
     <script>
+        // FIX: Empêcher le saut automatique
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+
+        // IMMEDIATE THEME CHECK (FIX FLASH LIGHT MODE)
+        if(localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
         const firebaseConfig = { apiKey: "AIzaSyA8SNo_lyJ0CfkZ9lTRRF7pKajx_VeM8QQ", authDomain: "zuuut-store-maroc.firebaseapp.com", projectId: "zuuut-store-maroc", storageBucket: "zuuut-store-maroc.firebasestorage.app", messagingSenderId: "364412979596", appId: "1:364412979596:web:aa47d8253bfd712ffeeea9" };
         firebase.initializeApp(firebaseConfig); const db = firebase.firestore();
 
-        function toggleTheme() { document.body.classList.toggle('dark-mode'); localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); }
-        if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
-        window.onscroll = function() { document.getElementById("back-to-top").style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "flex" : "none"; };
+        let offersData = [];
+        let currentOffer = null;
+        let currentLang = 'fr';
+        const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853']; 
+        
+        const translations = {
+            fr: { home:"Accueil", fibre:"Fibre", produit:"Produits", forfait:"Forfaits", promo:"Promos", reviews:"Avis", contact:"Contact", welcome_title:"NOS OFFRES", contact_title:"Contactez Abzou", send:"Envoyer", cmd:"Voir", cmd_now:"COMMANDER MAINTENANT", hero_badge:"EXCLUSIVITÉ MAROC", hero_sub:"MEGA / SECONDE", notif_text:"Installation Gratuite 1000M !", flash_promo:"PROMO FLASH", back:"Retour", modal_text:"Remplissez pour commander:", confirm:"Confirmer", ph_name:"Votre Nom", ph_phone:"Votre Téléphone", ph_msg:"Votre Message...", ph_email:"Votre Email", news_title:"Offres Exclusives", news_desc:"Recevez nos offres.", sub_btn:"S'abonner", ad_label:"Publicité", reviews_title:"Avis Clients", reviews_prod:"Avis sur ce produit", add_review:"Ajouter un avis", view_offer:"VOIR L'OFFRE", rights:"Tous droits réservés." },
+            ar: { home:"الرئيسية", fibre:"ألياف", produit:"منتجات", forfait:"اشتراكات", promo:"عروض", reviews:"آراء", contact:"تواصل", welcome_title:"عروضنا", contact_title:"تواصل معنا", send:"إرسال", cmd:"عرض", cmd_now:"اطلب الآن", hero_badge:"حصريا بالمغرب", hero_sub:"ميجا / ثانية", notif_text:"تركيب مجاني لعرض 1000 ميجا!", flash_promo:"عروض سريعة", back:"عودة", modal_text:"املأ الطلب:", confirm:"تأكيد", ph_name:"الاسم", ph_phone:"الهاتف", ph_msg:"الرسالة...", ph_email:"البريد", news_title:"عروض حصرية", news_desc:"توصل بجديد العروض", sub_btn:"اشتراك", ad_label:"إعلان", reviews_title:"آراء الزبناء", reviews_prod:"رأيك في المنتج", add_review:"أضف رأيك", view_offer:"شاهد العرض", rights:"جميع الحقوق محفوظة." },
+            en: { home:"Home", fibre:"Fiber", produit:"Products", forfait:"Plans", promo:"Deals", reviews:"Reviews", contact:"Contact", welcome_title:"OUR OFFERS", contact_title:"Contact Us", send:"Send", cmd:"View", cmd_now:"ORDER NOW", hero_badge:"MOROCCO EXCLUSIVE", hero_sub:"MEGA / SECOND", notif_text:"Free Install for 1000M!", flash_promo:"FLASH SALE", back:"Back", modal_text:"Fill to order:", confirm:"Confirm", ph_name:"Name", ph_phone:"Phone", ph_msg:"Message...", ph_email:"Email", news_title:"Exclusive Deals", news_desc:"Get best offers.", sub_btn:"Subscribe", ad_label:"Advertisement", reviews_title:"Customer Reviews", reviews_prod:"Product Review", add_review:"Add Review", view_offer:"VIEW OFFER", rights:"All rights reserved." },
+            es: { home:"Inicio", fibre:"Fibra", produit:"Productos", forfait:"Planes", promo:"Ofertas", reviews:"Reseñas", contact:"Contacto", welcome_title:"NUESTRAS OFERTAS", contact_title:"Contáctanos", send:"Enviar", cmd:"Ver", cmd_now:"ORDENAR AHORA", hero_badge:"EXCLUSIVO MARRUECOS", hero_sub:"MEGA / SEGUNDO", notif_text:"¡Instalación Gratis 1000M!", flash_promo:"OFERTA FLASH", back:"Volver", modal_text:"Rellene para pedir:", confirm:"Confirmar", ph_name:"Nombre", ph_phone:"Teléfono", ph_msg:"Mensaje...", ph_email:"Correo", news_title:"Ofertas Exclusivas", news_desc:"Recibe las mejores ofertas.", sub_btn:"Suscribirse", ad_label:"Publicidad", reviews_title:"Opiniones Clientes", reviews_prod:"Opinión del producto", add_review:"Añadir reseña", view_offer:"VER OFERTA", rights:"Todos los derechos reservados." }
+        };
 
-        let allArts = [];
+        let allReviews = [ { name: "Ahmed K.", stars: 5, msg: "Fibre top !", date: "10/12/2025", offerId: "orange-33" }, { name: "Sara L.", stars: 4, msg: "Service rapide.", date: "11/12/2025", offerId: "global" } ];
 
-        db.collection('offers').where('type', '==', 'article').onSnapshot(snap => {
-            allArts = [];
-            snap.forEach(d => allArts.push({id: d.id, ...d.data()}));
-            
-            let orange = allArts.find(a => a.title.toLowerCase().includes('orange'));
-            let others = allArts.filter(a => !a.title.toLowerCase().includes('orange'));
-            let top3 = others.slice(0, 3);
-            if(orange && top3.length >= 2) top3.splice(1, 0, orange); else if(orange) top3.unshift(orange);
-            
-            const slider = document.getElementById('slider-content'); slider.innerHTML = '';
-            top3.slice(0, 3).forEach(a => {
-                slider.innerHTML += `<div class="slide-card" onclick="openArticle('${a.id}')"><img src="${a.img}" class="slide-bg"><div class="slide-info"><span class="slide-badge">TOP 🔥</span><h3 style="margin:0;font-size:1.1rem;text-shadow:0 2px 10px black">${a.title}</h3></div></div>`;
-            });
+        window.onload = () => { 
+            loadOffers();
+            renderReviews('global');
+            trackVisit();
+            db.collection('settings').doc('config').onSnapshot(doc => { if(doc.exists && doc.data().newsletter_active) { if(!sessionStorage.getItem('popup_shown')) { setTimeout(() => { document.getElementById('news-popup').style.display = 'block'; }, 2000); } } else { document.getElementById('news-popup').style.display = 'none'; } });
+            window.addEventListener('popstate', function(event) { if(window.location.hash && window.location.hash.length > 1) { const slug = window.location.hash.substring(1); const found = offersData.find(o => createSlug(o.title) === slug); if(found) { showDetailView(found, false); } } else { closeDetail(false); } });
+            setupHero();
+            setTimeout(()=>document.getElementById('sticky-ad').style.display='flex', 3000);
+            setTimeout(()=>document.getElementById('notif-toast').style.transform='translateX(0)',2000); 
+            setTimeout(()=>document.getElementById('notif-toast').style.transform='translateX(200%)',7000); 
+        };
 
-            const grid = document.getElementById('grid-posts'); grid.innerHTML = '';
-            allArts.forEach((a, i) => {
-                let teaser = a.desc ? a.desc.replace(/<[^>]+>/g, '').substring(0, 80) + '...' : '';
-                grid.innerHTML += `<div class="post-card" onclick="openArticle('${a.id}')"><img src="${a.img}" class="post-img" loading="lazy"><div class="post-body"><div class="post-date">${a.date||'INFO'}</div><div class="post-title">${a.title}</div><div class="post-desc">${teaser}</div><div class="read-more">LIRE →</div></div></div>`;
-                if((i+1)%2 === 0) grid.innerHTML += `<div class="post-card" style="background:#fff5eb;border:2px dashed var(--primary);align-items:center;justify-content:center;text-align:center;padding:10px"><span style="background:white;padding:2px 8px;border-radius:10px;font-size:0.6rem;color:#aaa;">PUB</span><ins class="adsbygoogle" style="display:block;width:100%;height:100%" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-8017340007827546" data-ad-slot="XXXXXXX"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script></div>`;
-            });
-        });
-
-        const urlParams = new URLSearchParams(window.location.search);
-        if(urlParams.get('id')) openArticle(urlParams.get('id'));
-
-        function openArticle(id) {
-            document.getElementById('detail-view').style.display = 'block';
-            window.history.pushState({}, '', '?id='+id);
-            const content = document.getElementById('article-content');
-            content.innerHTML = '<div class="loader">Ouverture...</div>';
-            
-            db.collection('offers').doc(id).get().then(doc => {
-                if(doc.exists) {
-                    const p = doc.data();
-                    content.innerHTML = `<img src="${p.img}" style="width:100%;max-height:450px;object-fit:cover;border-radius:15px"><h1 style="margin:20px 0;color:var(--primary)">${p.title}</h1><div style="color:#888;font-weight:bold;margin-bottom:20px"><i class="far fa-clock"></i> ${p.date}</div><div style="font-size:1.1rem;line-height:1.8;opacity:0.9">${p.desc}</div>`;
-                    
-                    const sugg = document.getElementById('suggestions-grid'); sugg.innerHTML = '';
-                    let c = 0;
-                    allArts.forEach(a => {
-                        if(a.id !== id && c < 3) {
-                            sugg.innerHTML += `<div class="post-card" onclick="openArticle('${a.id}')" style="box-shadow:none;border:1px solid #eee"><img src="${a.img}" style="height:120px;object-fit:cover"><div style="padding:10px"><h4 style="margin:0;font-size:0.9rem">${a.title}</h4></div></div>`;
-                            c++;
-                        }
-                    });
-                    
-                    db.collection('offers').doc(id).update({views: (p.views||0)+1});
+        function setupHero() {
+            db.collection('settings').doc('hero_config').onSnapshot(doc => {
+                if (doc.exists) { 
+                    const data = doc.data(); 
+                    const sync = (htmlID, dbID) => { 
+                        const el = document.getElementById(htmlID); 
+                        if (el && data[dbID]) { 
+                            if(htmlID.startsWith('hero-feat')) {
+                                const parts = data[dbID].text.split(' ');
+                                document.getElementById(htmlID+'-txt').innerText = parts[0] + (parts[1] && parts[1].length < 4 ? ' '+parts[1] : '');
+                                document.getElementById(htmlID+'-sub').innerText = parts.slice(parts[0].split(' ').length + (parts[1] && parts[1].length < 4 ? 1 : 0)).join(' ');
+                            } else if (htmlID === 'hero-btn') { document.getElementById('hero-btn-txt').innerText = data[dbID].text; }
+                            else if (htmlID === 'hero-price') { document.getElementById('hero-price-txt').innerText = data[dbID].text; }
+                            else { el.innerText = data[dbID].text; }
+                            if (data[dbID].active === false) { el.style.display = 'none'; } else { el.style.display = ''; }
+                        } 
+                    }; 
+                    sync('hero-tagline', 'h_tagline'); sync('hero-number', 'h_number'); sync('hero-unit', 'h_unit'); sync('hero-price', 'h_price'); sync('hero-btn', 'h_btn'); 
+                    for(let i=1; i<=5; i++) sync('hero-feat'+i, 'h_feat'+i);
                 }
             });
         }
 
-        function addComment() {
-            const n = document.getElementById('c-name').value;
-            const m = document.getElementById('c-msg').value;
-            if(n && m) {
-                document.getElementById('comments-list').innerHTML = `<div class="comment-item" style="background:#fff3e0"><div class="c-avatar">${n[0].toUpperCase()}</div><div><strong>${n}</strong><br>${m}</div></div>` + document.getElementById('comments-list').innerHTML;
-                document.getElementById('c-name').value = ''; 
-                document.getElementById('c-msg').value = '';
+        function loadOffers() {
+            db.collection("offers").onSnapshot(s => {
+                if (!s.empty) { 
+                    offersData=[]; 
+                    s.forEach(d=>offersData.push({id:d.id,...d.data()})); 
+                } else {
+                    offersData = [ { id: "orange-33", active: true, type: "fibre", title: "Orange 3.3 (500M)", price: 449, badge: "Best Seller", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80", desc: "Offre Fibre." } ];
+                }
+                if(document.getElementById('view-offers').style.display !== 'none') {
+                    const activeBtn = document.querySelector('.nav-links a.active');
+                    const type = activeBtn ? activeBtn.id.replace('btn-','') : 'all';
+                    renderOffers(type);
+                }
+                if(window.location.hash && window.location.hash.length > 1) {
+                    const slug = window.location.hash.substring(1);
+                    const found = offersData.find(o => createSlug(o.title) === slug);
+                    if(found) showDetailView(found, false);
+                }
+            });
+        }
+
+        function getCleanPreview(html) { if(!html) return ""; let temp = html.replace(/<[^>]+>/g, ''); return temp.substring(0, 100) + "..."; }
+        function createSlug(title) { return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, ''); }
+        function getTranslatedContent(offer, field) { if ((currentLang === 'ar' || currentLang === 'dr_ar') && offer[field + '_ar']) return offer[field + '_ar']; if (currentLang === 'en' && offer[field + '_en']) return offer[field + '_en']; if (currentLang === 'es' && offer[field + '_es']) return offer[field + '_es']; return offer[field]; }
+
+        function renderOffers(f) {
+            const c = document.getElementById('offers-grid'); if(!c) return; c.innerHTML = ''; 
+            
+            // --- FIX: NE PAS AFFICHER LES ARTICLES DU BLOG DANS LA GRILLE ---
+            const l = offersData.filter(o => {
+                if (!o.active) return false;
+                if (o.type === 'article') return false; // C'est ici que ça se joue
+                if (f === 'all') return true;
+                return o.type === f;
+            });
+
+            if (!l.length && f !== 'all') { c.innerHTML = '<div style="text-align:center;width:100%;grid-column:1/-1;">Aucune offre disponible.</div>'; return; }
+
+            l.forEach((o, index) => {
+                const e = document.createElement('div'); e.className = 'card-wrapper'; e.onclick = () => openDetail(o.id);
+                const myColor = colors[index % colors.length]; e.style.setProperty('--card-color', myColor);
+                
+                let displayTitle = getTranslatedContent(o, 'title');
+                let cleanDesc = getCleanPreview(getTranslatedContent(o, 'desc'));
+                const btnText = translations[currentLang] ? translations[currentLang]['view_offer'] : "VOIR L'OFFRE";
+                const adLabel = translations[currentLang] ? translations[currentLang]['ad_label'] : "Publicité";
+
+                e.innerHTML = `
+                    <div class="card-content">
+                        ${o.badge ? `<span style="position:absolute;top:20px;right:20px;background:${myColor};color:white;padding:5px 10px;border-radius:20px;font-weight:bold;z-index:5;">${o.badge}</span>` : ''}
+                        <img src="${o.img}" onerror="this.src='https://via.placeholder.com/300'" alt="${displayTitle}" loading="lazy">
+                        <div style="padding:10px; display:flex; flex-direction:column; flex-grow:1;">
+                            <h3>${displayTitle}</h3>
+                            <p class="desc-preview">${cleanDesc}</p>
+                            <div class="card-actions">
+                                <div class="price-inner" style="color:${myColor}; border:2px solid ${myColor};">${o.price} DH</div>
+                                <button class="cmd-btn" style="background:${myColor} !important;">${btnText}</button>
+                            </div>
+                        </div>
+                    </div>`;
+                c.appendChild(e);
+
+                if ((index + 1) % 3 === 0) {
+                    const adDiv = document.createElement('div'); adDiv.className = 'card-wrapper ad-wrapper';
+                    adDiv.innerHTML = `<div class="ad-content"><span class="ad-label">${adLabel}</span><ins class="adsbygoogle" style="display:block; width:100%; height:100%;" data-ad-client="ca-pub-8017340007827546" data-ad-slot="2461881846" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script></div>`;
+                    c.appendChild(adDiv);
+                }
+            });
+
+            // --- SECTION BLOG EN BAS (BONUS) ---
+            const blogGrid = document.getElementById('home-blog-grid');
+            const blogTitle = document.getElementById('blog-section-title');
+
+            if(blogGrid && blogTitle) {
+                if(f === 'all') { // Seulement sur l'onglet "Accueil"
+                    const articles = offersData.filter(o => o.active && o.type === 'article').slice(0, 3);
+
+                    if(articles.length > 0) {
+                        blogTitle.style.display = 'flex';
+                        blogGrid.innerHTML = '';
+                        articles.forEach(a => {
+                            const div = document.createElement('div');
+                            div.className = 'card-wrapper';
+                            // Au clic, on va vers blog.html
+                            div.onclick = () => window.location.href = `blog.html?id=${a.id}`;
+                            
+                            div.innerHTML = `
+                                <div class="card-content" style="border-left:4px solid var(--primary);">
+                                    <div style="position:absolute; top:10px; right:10px; background:black; color:white; padding:4px 10px; border-radius:20px; font-size:0.7rem; font-weight:bold;">BLOG</div>
+                                    <img src="${a.img}" style="height:180px; object-fit:cover;" onerror="this.src='https://via.placeholder.com/300'">
+                                    <div style="padding:15px;">
+                                        <span style="font-size:0.8rem; color:#888; display:block; margin-bottom:5px;">${a.date || 'Récemment'}</span>
+                                        <h3 style="font-size:1.1rem; margin-bottom:10px;">${getTranslatedContent(a, 'title')}</h3>
+                                        <button class="cmd-btn" style="background:transparent; color:var(--text); border:1px solid #ccc; font-size:0.8rem; padding:8px;">LIRE L'ARTICLE</button>
+                                    </div>
+                                </div>
+                            `;
+                            blogGrid.appendChild(div);
+                        });
+                    } else {
+                        blogTitle.style.display = 'none';
+                        blogGrid.innerHTML = '';
+                    }
+                } else {
+                    blogTitle.style.display = 'none';
+                    blogGrid.innerHTML = '';
+                }
             }
         }
 
-        function closeArticle() { document.getElementById('detail-view').style.display = 'none'; window.history.pushState({}, '', 'blog.html'); }
+        function openDetail(id) { const found = offersData.find(o=>o.id===id); if(found) showDetailView(found, true); }
+        function showDetailView(offer, pushHistory) { currentOffer = offer; const slug = createSlug(offer.title); if(pushHistory) { history.pushState({id: offer.id}, offer.title, '#' + slug); } document.title = offer.title + " | Zuuut Store"; let displayTitle = getTranslatedContent(offer, 'title'); let displayDesc = getTranslatedContent(offer, 'desc'); const metaDesc = document.querySelector('meta[name="description"]'); let cleanMeta = getCleanPreview(displayDesc); if (metaDesc) metaDesc.setAttribute("content", cleanMeta); db.runTransaction((t) => { const ref=db.collection('offers').doc(offer.id); return t.get(ref).then((d) => { if (!d.exists) return; t.update(ref, { views: (d.data().views || 0) + 1 }); }); }).catch(e=>{}); document.getElementById('detail-title').innerText=displayTitle; document.getElementById('detail-price').innerText=offer.price+' DH'; document.getElementById('detail-img').src=offer.img; document.getElementById('detail-desc').innerHTML=displayDesc; renderReviews(offer.id); document.getElementById('view-offers').style.display='none'; document.getElementById('view-detail').style.display='block'; window.scrollTo(0,0); }
+        function closeDetail(pushHistory = true) { document.getElementById('view-detail').style.display='none'; document.getElementById('view-offers').style.display='block'; document.title = "Fibre Optique Maroc - Zuuut Store | Installation Gratuite"; if(pushHistory) { history.pushState({}, document.title, window.location.pathname + window.location.search); } }
+
+        function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+        function toggleLangMenu() { const lm = document.getElementById('lang-menu'); lm.style.display = lm.style.display === 'block' ? 'none' : 'block'; }
+        document.addEventListener('click', function(event) { const nav = document.getElementById('nav-menu'); const toggle = document.querySelector('.menu-toggle'); if (!nav.contains(event.target) && !toggle.contains(event.target) && nav.classList.contains('active')) { nav.classList.remove('active'); } });
+        function translateContent(text, lang) { return (lang === 'fr' || !text) ? text : text; }
+        function closeNews() { document.getElementById('news-popup').style.display = 'none'; sessionStorage.setItem('popup_shown', 'true'); }
+        function subNews(e) { e.preventDefault(); db.collection('subscribers').add({ email: document.getElementById('n-email').value, date: new Date().toLocaleString() }).then(() => { alert("Abonné !"); closeNews(); }); }
+        function getDevice() { const u=navigator.userAgent; if(/Mobile|Android/i.test(u)) return "Mobile"; return "PC"; }
+        async function trackVisit() { try { const req = await fetch('https://get.geojs.io/v1/ip/geo.json'); const data = await req.json(); db.collection('logs').add({ ip: data.ip, city: data.city || 'Maroc', country: data.country, country_code: data.country_code, device_model: getDevice(), page: window.location.pathname, date: new Date().toLocaleString("fr-FR") }); } catch (e) { db.collection('logs').add({ ip: "Masqué", city: "Maroc", device_model: getDevice(), date: new Date().toLocaleString("fr-FR") }); } }
+        function toggleTheme() { document.body.classList.toggle('dark-mode'); localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); }
+        function changeLang(l) { currentLang = l; document.getElementById('lang-menu').style.display='none'; document.body.className = ''; if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode'); if(l==='ar'||l==='dr_ar') document.body.classList.add('rtl'); document.querySelectorAll('[data-i18n]').forEach(el=>{ const k=el.getAttribute('data-i18n'); if(translations[l] && translations[l][k]) { if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder=translations[l][k]; else el.innerHTML=el.innerHTML.includes('<i')?`<i class="${el.querySelector('i').className}"></i> ${translations[l][k]}`:translations[l][k]; } }); if(offersData.length && document.getElementById('view-offers').style.display !== 'none') { const activeType = document.querySelector('.nav-links a.active') ? document.querySelector('.nav-links a.active').id.replace('btn-','') : 'all'; renderOffers(activeType); } }
+
+        function router(t) { 
+            document.querySelectorAll('.nav-links a').forEach(b=>b.classList.remove('active')); 
+            document.getElementById('btn-'+t).classList.add('active'); 
+            document.getElementById('view-detail').style.display='none'; document.getElementById('view-contact').style.display='none'; document.getElementById('view-reviews').style.display='none'; document.getElementById('view-offers').style.display='none';
+            if(t==='contact'){ document.getElementById('view-contact').style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); } 
+            else if(t==='reviews'){ document.getElementById('view-reviews').style.display='block'; renderReviews('global'); window.scrollTo({top:0,behavior:'smooth'}); } 
+            else { 
+                document.getElementById('view-offers').style.display='block'; renderOffers(t); 
+                if(t === 'all') { history.pushState(null, null, ' '); window.scrollTo({top:0, behavior:'smooth'}); } 
+                else { const divider = document.querySelector('.section-divider'); if(divider) { const headerOffset = 120; const elementPosition = divider.getBoundingClientRect().top; const offsetPosition = elementPosition + window.pageYOffset - headerOffset; window.scrollTo({ top: offsetPosition, behavior: "smooth" }); } }
+            } 
+            document.getElementById('nav-menu').classList.remove('active'); 
+        }
+
+        function renderReviews(filterId = 'global') { const container = filterId === 'global' ? document.getElementById('reviews-list') : document.getElementById('article-reviews-list'); if(!container) return; container.innerHTML = ''; const filtered = allReviews.filter(r => filterId === 'global' || r.offerId === filterId || r.offerId === 'global'); if(filtered.length === 0) container.innerHTML = '<div style="opacity:0.6; font-style:italic;">Aucun avis pour le moment.</div>'; filtered.forEach(r => { let stars = ''; for(let i=0; i<r.stars; i++) stars += '⭐'; const d = document.createElement('div'); d.className = filterId === 'global' ? 'review-card' : 'review-card-mini'; if(filterId === 'global') { d.innerHTML = `<div class="r-header"><span>${r.name}</span><span style="color:#f1c40f">${stars}</span></div><div class="r-text">"${r.msg}"</div><div class="r-date">${r.date}</div>`; } else { d.innerHTML = `<div class="rm-head"><span>${r.name}</span><span>${stars}</span></div><div class="rm-body">"${r.msg}"</div>`; } container.appendChild(d); }); }
+        function addReview(e, context) { e.preventDefault(); let n, s, m, tId = 'global'; if(context === 'detail' && currentOffer) { n = document.getElementById('art-r-name').value; s = parseInt(document.getElementById('art-r-stars').value); m = document.getElementById('art-r-msg').value; tId = currentOffer.id; } else { n = document.getElementById('r-name').value; s = parseInt(document.getElementById('r-stars').value); m = document.getElementById('r-msg').value; } allReviews.unshift({ name: n, stars: s, msg: m, date: new Date().toLocaleDateString(), offerId: tId }); if(context === 'detail') renderReviews(tId); renderReviews('global'); alert("Avis publié !"); e.target.reset(); }
+        function buyCurrent() { openModal(currentOffer); }
+        function openModal(o) { currentOffer=o; document.getElementById('m-title').innerText=translateContent(o.title, currentLang); document.getElementById('m-price').innerText=o.price+' DH'; document.getElementById('order-modal').classList.add('active'); }
+        function closeModal() { document.getElementById('order-modal').classList.remove('active'); }
+        function submitOrder() { const n=document.getElementById('m-name').value, p=document.getElementById('m-phone').value; if(!n||!p)return alert("Remplissez les champs"); db.collection("messages").add({name:n,phone:p,msg:`Commande: ${currentOffer.title}`,date:new Date().toLocaleString()}).then(()=>{alert("Commande Reçue !");closeModal();}); }
+        function sendMessage(e) { e.preventDefault(); db.collection("messages").add({name:document.getElementById('c-name').value,phone:document.getElementById('c-phone').value,msg:document.getElementById('c-msg').value,date:new Date().toLocaleString()}).then(()=>{alert("Envoyé !");e.target.reset();}); }
+        function orderWhatsApp() { const n=document.getElementById('m-name').value, p=document.getElementById('m-phone').value; const t = `Salam Zuuut, je veux : *${currentOffer.title}* (${currentOffer.price} DH)\nNom: ${n} Tel: ${p}`; window.open(`https://wa.me/212690565433?text=${encodeURIComponent(t)}`, '_blank'); }
     </script>
 </body>
 </html>
